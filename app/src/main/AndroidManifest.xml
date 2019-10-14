@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".addFriends.AddFriendsActivity"></activity>
+        <activity android:name=".addSongs.AddSongsActivity"></activity>
+        <activity android:name=".forgotPassword.ForgotPasswordActivity"></activity>
+        <activity android:name=".friends.FriendsActivity"></activity>
+        <activity android:name=".friendSong.FriendSongActivity"></activity>
+        <activity android:name=".player.PlayerActivity"></activity>
+        <activity android:name=".register.RegisterActivity"></activity>
+        <activity android:name=".songs.SongsActivity"></activity>
     </application>
 
 </manifest>
