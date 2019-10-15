@@ -18,4 +18,9 @@
     <string name="addFriends">Añadir amigos</string>
     <string name="friendEmail">Correo de tu amigo</string>
     <string name="sendButton">Enviar</string>
+    <string name="addSongs">Añadir canción</string>
+    <string name="songTitle">Titulo de la cancion</string>
+    <string name="songArtist">Artista de la canción</string>
+    <string name="fileName">Nombre del archivo</string>
+    <string name="searchButton">Buscar archivo</string>
 </resources>

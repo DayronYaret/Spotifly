@@ -3,15 +3,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".addSongs.AddSongsActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".addFriends.AddFriendsActivity">
 
-    <TextView
-        android:id="@+id/data"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        tools:text="Hello" />
+        android:layout_height="match_parent">
 
+
+        <LinearLayout
+            android:id="@+id/titulo"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="vertical"
+            android:background="@color/morado416"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8sp"
+                android:layout_marginTop="8sp"
+                android:textColor="@color/blanco"
+                android:textSize="30sp"
+                tools:text="@string/addSongs" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/campos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="8sp"
+            android:layout_marginEnd="8sp"
+            app:layout_constraintTop_toBottomOf="@id/titulo"
+            android:layout_marginTop="50sp">
+
+            <TextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                tools:text="@string/songTitle" />
+
+            <EditText
+                android:id="@+id/editTextTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textViewArtist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:textSize="20sp"
+                tools:text="@string/songArtist" />
+
+            <EditText
+                android:id="@+id/editTextArtist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/searchButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/morado416"
+                android:textColor="@color/blanco"
+                tools:text="@string/searchButton" />
+
+            <TextView
+                android:id="@+id/textViewFileName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginTop="20sp"
+                tools:text="@string/fileName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/campos">
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:background="@color/morado416"
+                android:textColor="@color/blanco"
+                tools:text="@string/cancelButton"
+                />
+
+            <Button
+                android:id="@+id/registerButton"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:background="@color/morado416"
+                android:textColor="@color/blanco"
+                tools:text="@string/sendButton" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
