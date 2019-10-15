@@ -13,6 +13,7 @@ import es.ulpgc.dayron.spotifly.register.RegisterState;
 import es.ulpgc.dayron.spotifly.songs.SongsState;
 
 public class AppMediator extends Application {
+
     private LoginState loginState;
     private SongsState songsState;
     private RegisterState registerState;
