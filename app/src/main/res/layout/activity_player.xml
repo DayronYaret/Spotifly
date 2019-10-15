@@ -16,7 +16,7 @@
             android:id="@+id/titulo"
             android:layout_width="match_parent"
             android:layout_height="75dp"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:background="@color/morado416"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -29,6 +29,15 @@
                 android:textColor="@color/blanco"
                 android:textSize="30sp"
                 tools:text="@string/addFriends" />
+
+            <ImageButton
+                android:id="@+id/imageButtonFriend"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/morado416"
+                app:srcCompat="@drawable/friend" />
         </LinearLayout>
 
         <LinearLayout
