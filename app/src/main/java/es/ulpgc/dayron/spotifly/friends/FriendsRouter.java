@@ -4,6 +4,8 @@ import android.util.Log;
 import android.content.Intent;
 import android.content.Context;
 
+import es.ulpgc.dayron.spotifly.app.AppMediator;
+
 public class FriendsRouter implements FriendsContract.Router {
 
   public static String TAG = FriendsRouter.class.getSimpleName();

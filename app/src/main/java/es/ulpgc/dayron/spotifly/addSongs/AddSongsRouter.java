@@ -4,6 +4,8 @@ import android.util.Log;
 import android.content.Intent;
 import android.content.Context;
 
+import es.ulpgc.dayron.spotifly.app.AppMediator;
+
 public class AddSongsRouter implements AddSongsContract.Router {
 
   public static String TAG = AddSongsRouter.class.getSimpleName();

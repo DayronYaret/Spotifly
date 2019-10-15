@@ -4,6 +4,8 @@ import android.util.Log;
 import android.content.Intent;
 import android.content.Context;
 
+import es.ulpgc.dayron.spotifly.app.AppMediator;
+
 public class PlayerRouter implements PlayerContract.Router {
 
   public static String TAG = PlayerRouter.class.getSimpleName();

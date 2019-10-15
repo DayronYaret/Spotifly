@@ -2,7 +2,9 @@ package es.ulpgc.dayron.spotifly.songs;
 
 import java.lang.ref.WeakReference;
 
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
+
+import es.ulpgc.dayron.spotifly.app.AppMediator;
 
 public class SongsScreen {
 

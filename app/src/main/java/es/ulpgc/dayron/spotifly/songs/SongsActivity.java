@@ -1,10 +1,8 @@
 package es.ulpgc.dayron.spotifly.songs;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
-
+import androidx.appcompat.app.AppCompatActivity;
 import es.ulpgc.dayron.spotifly.R;
 
 public class SongsActivity
