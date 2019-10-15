@@ -29,4 +29,6 @@
     <string name="playButton">reproducir</string>
     <string name="friendSong">Cancion escuchada por</string>
     <string name="player">Reproductor</string>
+    <string name="like">Me gusta</string>
+    <string name="dislike">No me gusta</string>
 </resources>
