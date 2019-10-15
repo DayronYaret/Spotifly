@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Spotifly</string>
+    <string name="user">Usuario</string>
+    <string name="password">password</string>
+    <string name="forgotpassword">¿Olvidaste tu clave?</string>
+    <string name="signIn">Entrar</string>
+    <string name="announcement">¿No tienes cuenta?</string>
+    <string name="register">¡registrate!</string>
 </resources>
