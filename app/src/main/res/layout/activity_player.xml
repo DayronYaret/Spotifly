@@ -28,7 +28,7 @@
                 android:layout_marginTop="8sp"
                 android:textColor="@color/blanco"
                 android:textSize="30sp"
-                tools:text="@string/addFriends" />
+                tools:text="@string/player" />
 
             <ImageButton
                 android:id="@+id/imageButtonFriend"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/negro"
                 android:textSize="40sp"
-                tools:text="@string/friendName" />
+                tools:text="@string/songTitle" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -65,7 +65,7 @@
 
                 android:textColor="@color/negro"
                 android:textSize="20sp"
-                tools:text="@string/songTitle" />
+                tools:text="@string/songArtist" />
         </LinearLayout>
 
         <LinearLayout
