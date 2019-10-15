@@ -6,4 +6,13 @@
     <string name="signIn">Entrar</string>
     <string name="announcement">¿No tienes cuenta?</string>
     <string name="register">¡registrate!</string>
+    <string name="registerButton">Registrar</string>
+    <string name="cancelButton">Cancelar</string>
+    <string name="newPassword">Nueva clave</string>
+    <string name="email">Correo electrónico</string>
+    <string name="forgorPasswordT">¿Olvidaste la contraseña?</string>
+    <string name="registerT">Registro</string>
+    <string name="repeatPassword">Repita la contraseña</string>
+    <string name="passwordd">Contraseña</string>
+    <string name="userName">Nombre de usuario</string>
 </resources>

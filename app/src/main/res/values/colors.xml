@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="negro">#000000</color>
-    <color name="nombre">#F7872EFF</color>
+    <color name="morado416">#5E26B6</color>
+    <color name="blanco">#FFFFFF</color>
 </resources>
