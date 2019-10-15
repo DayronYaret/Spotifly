@@ -39,7 +39,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:padding="10sp"
-                android:textColor="#313435"
+                android:textColor="@color/negro"
                 tools:text="@string/user" />
 
             <EditText
@@ -52,7 +52,7 @@
                 android:ems="10"
                 android:inputType="textPassword"
                 android:padding="10sp"
-                android:textColor="#000000"
+                android:textColor="@color/negro"
                 tools:text="@string/password" />
         </LinearLayout>
 
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="50dp"
-            android:textColor="#000000"
+            android:textColor="@color/negro"
             app:layout_constraintEnd_toEndOf="@+id/button"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutText"
             tools:text="@string/forgotpassword" />
@@ -92,7 +92,7 @@
                 android:id="@+id/anuncio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
+                android:textColor="@color/negro"
                 tools:text="@string/announcement" />
 
             <TextView
@@ -100,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/blanco"
                 tools:text="@string/register" />
 
         </LinearLayout>

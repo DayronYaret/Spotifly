@@ -15,4 +15,7 @@
     <string name="repeatPassword">Repita la contraseña</string>
     <string name="passwordd">Contraseña</string>
     <string name="userName">Nombre de usuario</string>
+    <string name="addFriends">Añadir amigos</string>
+    <string name="friendEmail">Correo de tu amigo</string>
+    <string name="sendButton">Enviar</string>
 </resources>
