@@ -1,17 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     tools:context=".player.PlayerActivity">
 
-    <TextView
-        android:id="@+id/data"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        tools:text="Hello" />
+        android:background="@color/blanco">
 
+        <LinearLayout
+            android:id="@+id/titulo"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="vertical"
+            android:background="@color/morado416"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8sp"
+                android:layout_marginTop="8sp"
+                android:textColor="@color/blanco"
+                android:textSize="30sp"
+                tools:text="@string/addFriends" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/friendAndTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="100sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/titulo">
+
+            <TextView
+                android:id="@+id/textViewFriendName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/negro"
+                android:textSize="40sp"
+                tools:text="@string/friendName" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50sp"
+
+                android:textColor="@color/negro"
+                android:textSize="20sp"
+                tools:text="@string/songTitle" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/friendAndTitle"
+            android:layout_marginTop="200sp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textViewStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginEnd="200sp"
+                android:text="@string/start"
+                android:textColor="@color/negro" />
+
+            <TextView
+                android:id="@+id/textViewEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:textColor="@color/negro"
+                tools:text="@string/end" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="10sp"
+            app:layout_constraintTop_toBottomOf="@id/duration">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:outlineAmbientShadowColor="@color/morado416"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/progress"
+            android:layout_marginTop="20sp">
+
+            <ImageButton
+                android:id="@+id/imageButtonBackwards"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="10sp"
+                app:srcCompat="@drawable/backward"
+                android:background="@color/blanco"/>
+
+            <ToggleButton
+                android:id="@+id/toggleButton"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:background="@color/morado416"
+                android:textOff="ON"
+                android:textOn="OFF"
+                tools:text="@string/playButton" />
+
+            <ImageButton
+                android:id="@+id/imageButtonForward"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/forward"
+                android:layout_marginStart="10sp"
+                android:background="@color/blanco"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

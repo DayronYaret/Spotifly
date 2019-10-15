@@ -23,4 +23,8 @@
     <string name="songArtist">Artista de la canción</string>
     <string name="fileName">Nombre del archivo</string>
     <string name="searchButton">Buscar archivo</string>
+    <string name="friendName">Nombre del amigo </string>
+    <string name="start">0:00</string>
+    <string name="end">3:39</string>
+    <string name="playButton">reproducir</string>
 </resources>
