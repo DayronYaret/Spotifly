@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/blanco">
 
 
         <LinearLayout
@@ -45,7 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                tools:text="@string/friendEmail" />
+                tools:text="@string/friendEmail"
+                android:textColor="@color/negro"/>
 
             <EditText
                 android:id="@+id/editTextEmail"
@@ -53,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10sp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="@color/negro"/>
         </LinearLayout>
 
         <LinearLayout

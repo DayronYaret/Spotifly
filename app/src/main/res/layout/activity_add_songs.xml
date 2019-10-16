@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/blanco">
 
 
         <LinearLayout
@@ -45,7 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                tools:text="@string/songTitle" />
+                tools:text="@string/songTitle"
+                android:textColor="@color/negro"/>
 
             <EditText
                 android:id="@+id/editTextTitle"
@@ -53,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10sp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="@color/negro"/>
 
             <TextView
                 android:id="@+id/textViewArtist"
@@ -61,7 +64,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
                 android:textSize="20sp"
-                tools:text="@string/songArtist" />
+                tools:text="@string/songArtist"
+                android:textColor="@color/negro"/>
 
             <EditText
                 android:id="@+id/editTextArtist"
@@ -69,7 +73,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10sp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="@color/negro"/>
 
             <Button
                 android:id="@+id/searchButton"
@@ -85,7 +90,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:layout_marginTop="20sp"
-                tools:text="@string/fileName" />
+                tools:text="@string/fileName"
+                android:textColor="@color/negro"/>
         </LinearLayout>
 
         <LinearLayout

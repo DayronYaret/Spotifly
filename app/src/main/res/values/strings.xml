@@ -31,4 +31,7 @@
     <string name="player">Reproductor</string>
     <string name="like">Me gusta</string>
     <string name="dislike">No me gusta</string>
+    <string name="friend">Amigos</string>
+    <string name="songs">Canciones</string>
+    <string name="add">+</string>
 </resources>
