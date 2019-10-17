@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "811088839942",
+    "firebase_url": "https://spotifly-827c6.firebaseio.com",
+    "project_id": "spotifly-827c6",
+    "storage_bucket": "spotifly-827c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811088839942:android:1bcf381d5453babdf34a87",
+        "android_client_info": {
+          "package_name": "es.ulpgc.dayron.spotifly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811088839942-uc3gldch1779nepp7numsfsgdihcqq0b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7fyy0W_cv9akdpVctvPM5kEnm6s0efs8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811088839942-uc3gldch1779nepp7numsfsgdihcqq0b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
