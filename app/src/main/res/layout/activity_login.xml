@@ -40,7 +40,7 @@
                 android:inputType="textPersonName"
                 android:padding="10sp"
                 android:textColor="@color/negro"
-                android:hint="@string/userName"/>
+                android:hint="@string/email"/>
 
             <EditText
                 android:id="@+id/password"

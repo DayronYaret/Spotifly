@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="es.ulpgc.dayron.spotifly">
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:name=".app.AppMediator"
         android:allowBackup="true"
@@ -10,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".login.LoginActivity">
+        <activity android:name=".songs.SongsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +25,7 @@
         <activity android:name=".friendSong.FriendSongActivity"></activity>
         <activity android:name=".player.PlayerActivity"></activity>
         <activity android:name=".register.RegisterActivity"></activity>
-        <activity android:name=".songs.SongsActivity"></activity>
+        <activity android:name=".login.LoginActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,92 @@
+package es.ulpgc.dayron.spotifly.app;
+
+import android.content.Context;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
+import androidx.annotation.NonNull;
+
+public class Repository implements RepositoryContract {
+
+  private static Repository INSTANCE;
+  private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+  private Context context;
+
+  public static RepositoryContract getInstance(Context context) {
+    if(INSTANCE == null){
+      INSTANCE = new Repository(context);
+    }
+    return INSTANCE;
+  }
+  private Repository(Context context) {
+    this.context = context;
+  }
+
+  @Override
+  public void loginUser(String email, String pass, final LoginUser callback) {
+    mAuth.signInWithEmailAndPassword(email, pass).
+        addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+          @Override
+          public void onComplete(@NonNull Task<AuthResult> task) {
+            if (task.isSuccessful()) {
+              // Sign in success, update UI with the signed-in user's information
+              callback.onUserLogIn(false);
+            } else {
+              // If sign in fails, display a message to the user.
+              callback.onUserLogIn(true);
+            }
+          }
+        });
+  }
+
+  @Override
+  public void registerUser(final String user, final String email, String pass, final RegisterUser callback) {
+    mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+      @Override
+      public void onComplete(@NonNull Task<AuthResult> task) {
+       if (task.isSuccessful()){
+         User usuario = new User(user, email);
+         String uId=mAuth.getUid();
+         FirebaseDatabase.getInstance().getReference().child("usuario").child(uId).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+           @Override
+           public void onComplete(@NonNull Task<Void> task) {
+             if (task.isSuccessful()){
+               callback.onUserRegister(false);
+             }else{
+               callback.onUserRegister(true);
+             }
+           }
+         });
+       }else{
+         callback.onUserRegister(true);
+       }
+      }
+    });
+  }
+
+  @Override
+  public void checkLogin(IsUserLogin callback) {
+    mAuth=FirebaseAuth.getInstance();
+    if(mAuth.getCurrentUser()!=null){
+      callback.isUserLogin(true);
+
+    }else{
+      callback.isUserLogin(false);
+    }
+  }
+
+  @Override
+  public void signOut(SignOut callback) {
+    mAuth=FirebaseAuth.getInstance();
+    mAuth.signOut();
+    if(mAuth.getCurrentUser()==null){
+      callback.userSignOut(true);
+    }else{
+      callback.userSignOut(false);
+    }
+  }
+}

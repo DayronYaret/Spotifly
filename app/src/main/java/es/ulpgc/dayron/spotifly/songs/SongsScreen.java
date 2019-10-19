@@ -5,6 +5,8 @@ import java.lang.ref.WeakReference;
 import androidx.fragment.app.FragmentActivity;
 
 import es.ulpgc.dayron.spotifly.app.AppMediator;
+import es.ulpgc.dayron.spotifly.app.Repository;
+import es.ulpgc.dayron.spotifly.app.RepositoryContract;
 
 public class SongsScreen {
 
@@ -15,10 +17,11 @@ public class SongsScreen {
 
     AppMediator mediator = (AppMediator) context.get().getApplication();
     SongsState state = mediator.getSongsState();
+    RepositoryContract repository= Repository.getInstance(context.get());
 
     SongsContract.Router router = new SongsRouter(mediator);
     SongsContract.Presenter presenter = new SongsPresenter(state);
-    SongsContract.Model model = new SongsModel();
+    SongsContract.Model model = new SongsModel(repository);
     presenter.injectModel(model);
     presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));

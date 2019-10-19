@@ -7,6 +7,7 @@ import android.content.Context;
 import es.ulpgc.dayron.spotifly.app.AppMediator;
 import es.ulpgc.dayron.spotifly.forgotPassword.ForgotPasswordActivity;
 import es.ulpgc.dayron.spotifly.register.RegisterActivity;
+import es.ulpgc.dayron.spotifly.songs.SongsActivity;
 
 public class LoginRouter implements LoginContract.Router {
 
@@ -40,6 +41,7 @@ public class LoginRouter implements LoginContract.Router {
   public void goRegister() {
     Context context = mediator.getApplicationContext();
     Intent intent = new Intent(context, RegisterActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     context.startActivity(intent);
   }
 
@@ -47,6 +49,16 @@ public class LoginRouter implements LoginContract.Router {
   public void goForgot() {
     Context context = mediator.getApplicationContext();
     Intent intent = new Intent(context, ForgotPasswordActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    context.startActivity(intent);
+
+  }
+
+  @Override
+  public void goSongs() {
+    Context context = mediator.getApplicationContext();
+    Intent intent = new Intent(context, SongsActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     context.startActivity(intent);
   }
 }

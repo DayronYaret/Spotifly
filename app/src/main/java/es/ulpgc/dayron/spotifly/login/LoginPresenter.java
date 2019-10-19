@@ -4,6 +4,8 @@ import android.util.Log;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.dayron.spotifly.app.RepositoryContract;
+
 public class LoginPresenter implements LoginContract.Presenter {
 
   public static String TAG = LoginPresenter.class.getSimpleName();
@@ -17,37 +19,32 @@ public class LoginPresenter implements LoginContract.Presenter {
     viewModel = state;
   }
 
+
   @Override
-  public void fetchData() {
-    // Log.e(TAG, "fetchData()");
-
-    // use passed state if is necessary
-    LoginState state = router.getDataFromPreviousScreen();
-    if (state != null) {
-
-      // update view and model state
-      viewModel.data = state.data;
-
-      // update the view
-      view.get().displayData(viewModel);
-
-      return;
-    }
-
-    // call the model
-    String data = model.fetchData();
-
-    // set view state
-    viewModel.data = data;
-
-    // update the view
-    view.get().displayData(viewModel);
-
+  public void signIn(String email, String pass) {
+    model.signIn(email, pass, new RepositoryContract.LoginUser() {
+      @Override
+      public void onUserLogIn(boolean error) {
+        Log.d("Login Presenter", "error"+error);
+        if(error==false){
+          router.goSongs();
+        }else{
+          viewModel.message="Password or username does not exist";
+          view.get().displayData(viewModel);
+        }
+      }
+    });
   }
 
   @Override
-  public void signIn(String user, String pass) {
+  public void onSuccess() {
+    router.goSongs();
+  }
 
+  @Override
+  public void OnError() {
+    viewModel.message="Password or username does not exist";
+    view.get().displayData(viewModel);
   }
 
   @Override

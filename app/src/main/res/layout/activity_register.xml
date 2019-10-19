@@ -97,7 +97,7 @@
                 android:layout_marginTop="10sp"
                 android:background="@drawable/inputs_background"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:padding="10sp"
                 android:textColor="@color/negro" />
 
@@ -117,7 +117,7 @@
                 android:layout_marginTop="10sp"
                 android:background="@drawable/inputs_background"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:padding="10sp"
                 android:textColor="@color/negro" />
         </LinearLayout>

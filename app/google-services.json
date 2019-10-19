@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "633421428454",
-    "firebase_url": "https://spotifly-5d3e0.firebaseio.com",
-    "project_id": "spotifly-5d3e0",
-    "storage_bucket": "spotifly-5d3e0.appspot.com"
+    "project_number": "597034197862",
+    "firebase_url": "https://spotifly-f61db.firebaseio.com",
+    "project_id": "spotifly-f61db",
+    "storage_bucket": "spotifly-f61db.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:633421428454:android:2e2eecc0162d8dc70e6d27",
+        "mobilesdk_app_id": "1:597034197862:android:d27ab1028121c189f0dea7",
         "android_client_info": {
           "package_name": "es.ulpgc.dayron.spotifly"
         }
       },
       "oauth_client": [
         {
-          "client_id": "633421428454-6dcl0u52ho6qhotnnm64vj8vlkbrj22g.apps.googleusercontent.com",
+          "client_id": "597034197862-j25sd4mr02ehh9tdososdnnpfn1cmkhm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAEWlTcrubW5i-XafOOcUTbuPop144HwkI"
+          "current_key": "AIzaSyD0z3ZhjMPtAMQkW-RG2aKTguSP2C6KY0w"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "633421428454-6dcl0u52ho6qhotnnm64vj8vlkbrj22g.apps.googleusercontent.com",
+              "client_id": "597034197862-j25sd4mr02ehh9tdososdnnpfn1cmkhm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

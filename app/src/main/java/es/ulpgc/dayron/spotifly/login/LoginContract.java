@@ -2,6 +2,8 @@ package es.ulpgc.dayron.spotifly.login;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.dayron.spotifly.app.RepositoryContract;
+
 public interface LoginContract {
 
   interface View {
@@ -17,17 +19,23 @@ public interface LoginContract {
 
     void injectRouter(Router router);
 
-    void fetchData();
-
     void signIn(String user, String pass);
 
     void goForgot();
 
     void goRegister();
+
+    void onSuccess();
+
+    void OnError();
+
+
   }
 
   interface Model {
     String fetchData();
+
+    void signIn(String user, String pass, RepositoryContract.LoginUser callback);
   }
 
   interface Router {
@@ -40,5 +48,7 @@ public interface LoginContract {
     void goRegister();
 
     void goForgot();
+
+    void goSongs();
   }
 }

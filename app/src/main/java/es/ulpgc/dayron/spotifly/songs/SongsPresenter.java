@@ -4,6 +4,8 @@ import android.util.Log;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.dayron.spotifly.app.RepositoryContract;
+
 public class SongsPresenter implements SongsContract.Presenter {
 
   public static String TAG = SongsPresenter.class.getSimpleName();
@@ -43,6 +45,39 @@ public class SongsPresenter implements SongsContract.Presenter {
     // update the view
     view.get().displayData(viewModel);
 
+  }
+
+  @Override
+  public void goLogin() {
+    router.goLogin();
+  }
+
+  @Override
+  public void isLogin() {
+    model.isLogin(new RepositoryContract.IsUserLogin() {
+      @Override
+      public void isUserLogin(boolean isLogin) {
+        if(isLogin==true){
+          //cargar canciones
+        }else{
+          router.goLogin();
+        }
+      }
+    });
+  }
+
+  @Override
+  public void SignOut() {
+    model.signOut(new RepositoryContract.SignOut() {
+      @Override
+      public void userSignOut(boolean isLogout) {
+        if(isLogout==true){
+          goLogin();
+        }else{
+          //no se que poner aqui
+        }
+      }
+    });
   }
 
   @Override

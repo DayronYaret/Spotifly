@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.Context;
 
 import es.ulpgc.dayron.spotifly.app.AppMediator;
+import es.ulpgc.dayron.spotifly.login.LoginActivity;
 
 public class SongsRouter implements SongsContract.Router {
 
@@ -32,5 +33,12 @@ public class SongsRouter implements SongsContract.Router {
   public SongsState getDataFromPreviousScreen() {
     SongsState state = mediator.getSongsState();
     return state;
+  }
+
+  @Override
+  public void goLogin() {
+    Context context = mediator.getApplicationContext();
+    Intent intent = new Intent(context, LoginActivity.class);
+    context.startActivity(intent);
   }
 }

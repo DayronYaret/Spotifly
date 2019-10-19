@@ -1,8 +1,11 @@
 package es.ulpgc.dayron.spotifly.register;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
+
+import es.ulpgc.dayron.spotifly.app.RepositoryContract;
 
 public class RegisterPresenter implements RegisterContract.Presenter {
 
@@ -43,6 +46,18 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     // update the view
     view.get().displayData(viewModel);
 
+  }
+
+  @Override
+  public void register(String user, String userEmail, String userPass) {
+    model.register(user, userEmail, userPass, new RepositoryContract.RegisterUser() {
+      @Override
+      public void onUserRegister(boolean error) {
+        if(error==false){
+          view.get().displayData(viewModel);
+        }
+      }
+    });
   }
 
   @Override
