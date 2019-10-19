@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp"
     tools:context=".register.RegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +27,7 @@
                 android:textColor="@color/blanco"
                 android:textSize="30sp"
                 android:layout_marginStart="8sp"
-                tools:text="@string/registerT" />
+                android:text="@string/registerT" />
         </LinearLayout>
 
         <LinearLayout
@@ -49,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/negro"
                 android:textSize="20sp"
-                tools:text="@string/userName" />
+                android:text="@string/userName" />
 
             <EditText
                 android:id="@+id/editTexUsert"
@@ -69,7 +68,7 @@
                 android:layout_marginTop="20sp"
                 android:textColor="@color/negro"
                 android:textSize="20sp"
-                tools:text="@string/email" />
+                android:text="@string/email" />
 
             <EditText
                 android:id="@+id/editTextCorreo"
@@ -88,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/negro"
                 android:textSize="20sp"
-                tools:text="@string/passwordd"
+                android:text="@string/passwordd"
                 android:layout_marginTop="20sp"/>
 
             <EditText
@@ -109,7 +108,7 @@
                 android:layout_marginTop="20sp"
                 android:textColor="@color/negro"
                 android:textSize="20sp"
-                tools:text="@string/repeatPassword" />
+                android:text="@string/repeatPassword" />
 
             <EditText
                 android:id="@+id/editTextClave2"
@@ -137,7 +136,8 @@
                 android:layout_width="150sp"
                 android:layout_height="wrap_content"
                 android:background="@color/morado416"
-                tools:text="@string/cancelButton" />
+                android:text="@string/cancelButton"
+                android:textColor="@color/blanco"/>
 
             <Button
                 android:id="@+id/registerButton"
@@ -145,7 +145,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20sp"
                 android:background="@color/morado416"
-                tools:text="@string/registerButton" />
+                android:text="@string/registerButton"
+                android:textColor="@color/blanco"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

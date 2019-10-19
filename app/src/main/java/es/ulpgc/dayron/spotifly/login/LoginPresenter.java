@@ -46,6 +46,21 @@ public class LoginPresenter implements LoginContract.Presenter {
   }
 
   @Override
+  public void signIn(String user, String pass) {
+
+  }
+
+  @Override
+  public void goForgot() {
+    router.goForgot();
+  }
+
+  @Override
+  public void goRegister() {
+    router.goRegister();
+  }
+
+  @Override
   public void injectView(WeakReference<LoginContract.View> view) {
     this.view = view;
   }

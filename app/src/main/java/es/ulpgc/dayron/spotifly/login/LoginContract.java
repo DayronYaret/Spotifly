@@ -18,6 +18,12 @@ public interface LoginContract {
     void injectRouter(Router router);
 
     void fetchData();
+
+    void signIn(String user, String pass);
+
+    void goForgot();
+
+    void goRegister();
   }
 
   interface Model {
@@ -30,5 +36,9 @@ public interface LoginContract {
     void passDataToNextScreen(LoginState state);
 
     LoginState getDataFromPreviousScreen();
+
+    void goRegister();
+
+    void goForgot();
   }
 }

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.Context;
 
 import es.ulpgc.dayron.spotifly.app.AppMediator;
+import es.ulpgc.dayron.spotifly.forgotPassword.ForgotPasswordActivity;
+import es.ulpgc.dayron.spotifly.register.RegisterActivity;
 
 public class LoginRouter implements LoginContract.Router {
 
@@ -32,5 +34,19 @@ public class LoginRouter implements LoginContract.Router {
   public LoginState getDataFromPreviousScreen() {
     LoginState state = mediator.getLoginState();
     return state;
+  }
+
+  @Override
+  public void goRegister() {
+    Context context = mediator.getApplicationContext();
+    Intent intent = new Intent(context, RegisterActivity.class);
+    context.startActivity(intent);
+  }
+
+  @Override
+  public void goForgot() {
+    Context context = mediator.getApplicationContext();
+    Intent intent = new Intent(context, ForgotPasswordActivity.class);
+    context.startActivity(intent);
   }
 }
