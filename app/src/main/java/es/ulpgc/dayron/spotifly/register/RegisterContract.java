@@ -10,6 +10,8 @@ public interface RegisterContract {
     void injectPresenter(Presenter presenter);
 
     void displayData(RegisterViewModel viewModel);
+
+    void displayError();
   }
 
   interface Presenter {

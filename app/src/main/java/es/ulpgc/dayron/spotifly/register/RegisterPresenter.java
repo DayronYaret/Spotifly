@@ -55,6 +55,8 @@ public class RegisterPresenter implements RegisterContract.Presenter {
       public void onUserRegister(boolean error) {
         if(error==false){
           view.get().displayData(viewModel);
+        }else{
+          view.get().displayError();
         }
       }
     });

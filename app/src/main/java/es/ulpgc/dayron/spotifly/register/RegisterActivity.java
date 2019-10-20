@@ -72,6 +72,11 @@ public class RegisterActivity
   }
 
   @Override
+  public void displayError() {
+    Toast.makeText(this, "No se ha podido añadir el usuario, cambie el email y el usuario por favor", Toast.LENGTH_SHORT).show();
+  }
+
+  @Override
   public void injectPresenter(RegisterContract.Presenter presenter) {
     this.presenter = presenter;
   }

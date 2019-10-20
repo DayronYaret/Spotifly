@@ -1,14 +1,22 @@
 package es.ulpgc.dayron.spotifly.app;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class Repository implements RepositoryContract {
 
@@ -44,26 +52,40 @@ public class Repository implements RepositoryContract {
   }
 
   @Override
-  public void registerUser(final String user, final String email, String pass, final RegisterUser callback) {
-    mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+  public void registerUser(final String user, final String email, final String pass, final RegisterUser callback) {
+
+    FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
       @Override
-      public void onComplete(@NonNull Task<AuthResult> task) {
-       if (task.isSuccessful()){
-         User usuario = new User(user, email);
-         String uId=mAuth.getUid();
-         FirebaseDatabase.getInstance().getReference().child("usuario").child(uId).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
-           @Override
-           public void onComplete(@NonNull Task<Void> task) {
-             if (task.isSuccessful()){
-               callback.onUserRegister(false);
-             }else{
-               callback.onUserRegister(true);
-             }
-           }
-         });
-       }else{
-         callback.onUserRegister(true);
-       }
+      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        if(dataSnapshot.child("usuarios").hasChild(user)){
+          callback.onUserRegister(true);
+        }else{
+          mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+              if (task.isSuccessful()){
+                User usuario = new User(user, email);
+                FirebaseDatabase.getInstance().getReference().child("usuarios").child(user).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                  @Override
+                  public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()){
+                      callback.onUserRegister(false);
+                    }else{
+                      callback.onUserRegister(true);
+                    }
+                  }
+                });
+              }else{
+                callback.onUserRegister(true);
+              }
+            }
+          });
+        }
+      }
+
+      @Override
+      public void onCancelled(@NonNull DatabaseError databaseError) {
+
       }
     });
   }
