@@ -21,4 +21,9 @@ public interface RepositoryContract {
     void userSignOut(boolean isLogout);
   }
   void signOut(RepositoryContract.SignOut callback);
+
+  interface ForgotPassword{
+    void onForgotPassword(boolean error);
+  }
+  void forgotPassword(String email, RepositoryContract.ForgotPassword callback);
 }

@@ -1,8 +1,12 @@
 package es.ulpgc.dayron.spotifly.forgotPassword;
 
 import android.util.Log;
+import android.widget.EditText;
 
 import java.lang.ref.WeakReference;
+
+import es.ulpgc.dayron.spotifly.app.RepositoryContract;
+
 
 public class ForgotPasswordPresenter implements ForgotPasswordContract.Presenter {
 
@@ -43,6 +47,20 @@ public class ForgotPasswordPresenter implements ForgotPasswordContract.Presenter
     // update the view
     view.get().displayData(viewModel);
 
+  }
+
+  @Override
+  public void forgotPassword(String email) {
+    model.forgotPassword(email, new RepositoryContract.ForgotPassword() {
+      @Override
+      public void onForgotPassword(boolean error) {
+        if(error==false){
+          view.get().displaySuccess();
+        }else{
+          view.get().displayError();
+        }
+      }
+    });
   }
 
   @Override

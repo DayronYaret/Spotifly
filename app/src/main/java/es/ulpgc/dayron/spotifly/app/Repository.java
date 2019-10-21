@@ -112,4 +112,21 @@ public class Repository implements RepositoryContract {
       callback.userSignOut(false);
     }
   }
-}
+
+  @Override
+  public void forgotPassword(final String email, final ForgotPassword callback) {
+    mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+      @Override
+      public void onComplete(@NonNull Task<Void> task) {
+        if (task.isSuccessful()) {
+          Log.d("Repo", "funka y se supone que envio el correo");
+          // successful operation
+          callback.onForgotPassword(false);
+        } else {
+          Log.d("Repo", email);
+          callback.onForgotPassword(true);
+        }
+      }
+    });
+  }
+  }
