@@ -42,7 +42,11 @@ public class ForgotPasswordActivity
       @Override
       public void onClick(View view) {
         String userEmail = email.getText().toString();
-        presenter.forgotPassword(userEmail);
+        if (userEmail.equals("")) {
+          Toast.makeText(ForgotPasswordActivity.this, "Por favor, rellene el campo correo electronico", Toast.LENGTH_SHORT).show();
+        } else {
+          presenter.forgotPassword(userEmail);
+        }
       }
     });
   }
