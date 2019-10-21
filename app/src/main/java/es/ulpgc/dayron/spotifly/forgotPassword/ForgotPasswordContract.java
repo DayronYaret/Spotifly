@@ -28,6 +28,7 @@ public interface ForgotPasswordContract {
     void fetchData();
 
     void forgotPassword(String email);
+
   }
 
   interface Model {
@@ -41,5 +42,7 @@ public interface ForgotPasswordContract {
     void passDataToNextScreen(ForgotPasswordState state);
 
     ForgotPasswordState getDataFromPreviousScreen();
+
+    void goLogin();
   }
 }

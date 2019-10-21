@@ -56,12 +56,15 @@ public class ForgotPasswordPresenter implements ForgotPasswordContract.Presenter
       public void onForgotPassword(boolean error) {
         if(error==false){
           view.get().displaySuccess();
+          router.goLogin();
         }else{
           view.get().displayError();
         }
       }
     });
   }
+
+
 
   @Override
   public void injectView(WeakReference<ForgotPasswordContract.View> view) {

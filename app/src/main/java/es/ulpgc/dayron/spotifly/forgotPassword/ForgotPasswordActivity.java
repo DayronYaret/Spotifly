@@ -73,7 +73,7 @@ public class ForgotPasswordActivity
 
   @Override
   public void displayError() {
-    Toast.makeText(this, "El usuario es incorrecto", Toast.LENGTH_SHORT).show();
+    Toast.makeText(this, "El email no existe", Toast.LENGTH_SHORT).show();
   }
 
   @Override
