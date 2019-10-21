@@ -57,15 +57,16 @@ public class Repository implements RepositoryContract {
     FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        if(dataSnapshot.child("usuarios").hasChild(user)){
+        if(dataSnapshot.child("usuarios").hasChild(user.toLowerCase())){
           callback.onUserRegister(true);
         }else{
           mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
               if (task.isSuccessful()){
-                User usuario = new User(user, email);
-                FirebaseDatabase.getInstance().getReference().child("usuarios").child(user).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+                String uId= mAuth.getUid();
+                User usuario = new User(user, email, uId);
+                FirebaseDatabase.getInstance().getReference().child("usuarios").child(user.toLowerCase()).setValue(usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
                   @Override
                   public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
