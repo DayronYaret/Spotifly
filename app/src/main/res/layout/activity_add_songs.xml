@@ -13,41 +13,22 @@
 
 
         <LinearLayout
-            android:id="@+id/titulo"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:orientation="vertical"
-            android:background="@color/morado416"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8sp"
-                android:layout_marginTop="8sp"
-                android:textColor="@color/blanco"
-                android:textSize="30sp"
-                tools:text="@string/addSongs" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/campos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginStart="8sp"
-            android:layout_marginEnd="8sp"
-            app:layout_constraintTop_toBottomOf="@id/titulo"
-            android:layout_marginTop="50sp">
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="100sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginStart="10sp">>
 
             <TextView
                 android:id="@+id/textViewTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/negro"
                 android:textSize="20sp"
-                tools:text="@string/songTitle"
-                android:textColor="@color/negro"/>
+                tools:text="@string/songTitle" />
 
             <EditText
                 android:id="@+id/editTextTitle"
@@ -56,16 +37,16 @@
                 android:layout_marginTop="10sp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textColor="@color/negro"/>
+                android:textColor="@color/negro" />
 
             <TextView
                 android:id="@+id/textViewArtist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
+                android:textColor="@color/negro"
                 android:textSize="20sp"
-                tools:text="@string/songArtist"
-                android:textColor="@color/negro"/>
+                tools:text="@string/songArtist" />
 
             <EditText
                 android:id="@+id/editTextArtist"
@@ -74,7 +55,7 @@
                 android:layout_marginTop="10sp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textColor="@color/negro"/>
+                android:textColor="@color/negro" />
 
             <Button
                 android:id="@+id/searchButton"
@@ -88,10 +69,10 @@
                 android:id="@+id/textViewFileName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:layout_marginTop="20sp"
-                tools:text="@string/fileName"
-                android:textColor="@color/negro"/>
+                android:textColor="@color/negro"
+                android:textSize="20sp"
+                tools:text="@string/fileName" />
         </LinearLayout>
 
         <LinearLayout

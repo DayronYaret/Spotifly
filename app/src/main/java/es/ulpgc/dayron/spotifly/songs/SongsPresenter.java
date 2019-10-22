@@ -81,6 +81,21 @@ public class SongsPresenter implements SongsContract.Presenter {
   }
 
   @Override
+  public void goFriends() {
+    router.goFriends();
+  }
+
+  @Override
+  public void goAddFriends() {
+    router.goAddFriends();
+  }
+
+  @Override
+  public void goAddSongs() {
+    router.goAddSongs();
+  }
+
+  @Override
   public void injectView(WeakReference<SongsContract.View> view) {
     this.view = view;
   }

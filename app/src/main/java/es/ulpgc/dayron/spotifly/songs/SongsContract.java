@@ -26,6 +26,12 @@ public interface SongsContract {
     void isLogin();
 
     void SignOut();
+
+    void goFriends();
+
+    void goAddFriends();
+
+    void goAddSongs();
   }
 
   interface Model {
@@ -42,5 +48,11 @@ public interface SongsContract {
     SongsState getDataFromPreviousScreen();
 
     void goLogin();
+
+    void goFriends();
+
+    void goAddFriends();
+
+    void goAddSongs();
   }
 }

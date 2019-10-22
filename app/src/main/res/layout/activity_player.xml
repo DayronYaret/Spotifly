@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".player.PlayerActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -124,7 +123,7 @@
                 android:id="@+id/imageButtonBackwards"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginStart="10sp"
+                android:layout_marginStart="30sp"
                 app:srcCompat="@drawable/backward"
                 android:background="@color/blanco"/>
 

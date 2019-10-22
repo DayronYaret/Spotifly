@@ -1,9 +1,13 @@
 package es.ulpgc.dayron.spotifly.songs;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import es.ulpgc.dayron.spotifly.R;
 
@@ -13,7 +17,6 @@ public class SongsActivity
   public static String TAG = SongsActivity.class.getSimpleName();
 
   private SongsContract.Presenter presenter;
-  private Button logout;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -22,17 +25,42 @@ public class SongsActivity
 
     // do the setup
     SongsScreen.configure(this);
-    logout=findViewById(R.id.buttonLogout);
 
-    logout.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.menu, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    int id = item.getItemId();
+    switch (id) {
+      case R.id.logOutOption:
         presenter.SignOut();
         presenter.goLogin();
+        break;
 
-      }
-    });
+      case R.id.friendsOption:
+        presenter.goFriends();
+        break;
 
+      case R.id.addFriendsOption:
+        presenter.goAddFriends();
+        break;
+
+      case R.id.songsOption:
+        break;
+
+      case R.id.addSongsOption:
+        presenter.goAddSongs();
+        break;
+        default:
+    }
+
+    return super.onOptionsItemSelected(item);
   }
 
   @Override

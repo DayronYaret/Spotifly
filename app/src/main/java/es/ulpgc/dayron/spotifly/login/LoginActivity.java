@@ -3,6 +3,7 @@ package es.ulpgc.dayron.spotifly.login;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,7 +28,11 @@ public class LoginActivity
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     setContentView(R.layout.activity_login);
+    if (getSupportActionBar() != null) {
+      getSupportActionBar().hide();
+    }
 
     // do the setup
     LoginScreen.configure(this);
