@@ -62,7 +62,7 @@
                 />
 
             <Button
-                android:id="@+id/registerButton"
+                android:id="@+id/submitButton"
                 android:layout_width="150sp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20sp"

@@ -1,16 +1,15 @@
 package es.ulpgc.dayron.spotifly.addSongs;
 
-import android.util.Log;
-
-import java.lang.ref.WeakReference;
+import es.ulpgc.dayron.spotifly.app.RepositoryContract;
 
 
 public class AddSongsModel implements AddSongsContract.Model {
 
   public static String TAG = AddSongsModel.class.getSimpleName();
+  private RepositoryContract repository;
 
-  public AddSongsModel() {
-
+  public AddSongsModel(RepositoryContract repository) {
+    this.repository=repository;
   }
 
   @Override

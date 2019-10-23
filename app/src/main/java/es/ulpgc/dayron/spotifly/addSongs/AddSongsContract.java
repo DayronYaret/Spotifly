@@ -18,6 +18,16 @@ public interface AddSongsContract {
     void injectRouter(Router router);
 
     void fetchData();
+
+    void SignOut();
+
+    void goLogin();
+
+    void goFriends();
+
+    void goAddFriends();
+
+    void goSongs();
   }
 
   interface Model {

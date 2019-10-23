@@ -46,6 +46,31 @@ public class AddSongsPresenter implements AddSongsContract.Presenter {
   }
 
   @Override
+  public void SignOut() {
+
+  }
+
+  @Override
+  public void goLogin() {
+
+  }
+
+  @Override
+  public void goFriends() {
+
+  }
+
+  @Override
+  public void goAddFriends() {
+
+  }
+
+  @Override
+  public void goSongs() {
+
+  }
+
+  @Override
   public void injectView(WeakReference<AddSongsContract.View> view) {
     this.view = view;
   }
