@@ -1,7 +1,10 @@
 package es.ulpgc.dayron.spotifly.addSongs;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,11 +13,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import es.ulpgc.dayron.spotifly.R;
 
 public class AddSongsActivity
@@ -27,19 +33,28 @@ public class AddSongsActivity
   private TextView fileName;
   private Button searchFile, cancel, submit;
   private Intent myFileIntent;
+  private String songTitle, songArtist;
+  private Uri path;
+  private final int READ_EXTERNAL_STORAGE = 1;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_add_songs);
+    askPermission(Manifest.permission.READ_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE);
+
 
     // do the setup
     AddSongsScreen.configure(this);
+
+
     title=findViewById(R.id.editTextTitle);
     artist=findViewById(R.id.editTextArtist);
     fileName=findViewById(R.id.textViewFileName);
     searchFile=findViewById(R.id.searchButton);
     cancel=findViewById(R.id.cancelButton);
     submit = findViewById(R.id.submitButton);
+    songTitle = title.toString();
+    songArtist=artist.toString();
 
     cancel.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -51,6 +66,7 @@ public class AddSongsActivity
       @Override
       public void onClick(View view) {
         //TODO: presenter.uploadSong();
+        presenter.uploadSong(songTitle, songArtist, path);
       }
     });
     searchFile.setOnClickListener(new View.OnClickListener() {
@@ -105,8 +121,10 @@ public class AddSongsActivity
       case 10:
 
         if(resultCode==RESULT_OK) {
-          String path = data.getData().getPath();
-          fileName.setText(path);
+          Uri selectedsong = data.getData();
+          path = selectedsong; //.getLastPathSegment() ultimo segmento del path, el nombre del archivo
+          //String path = getApplicationContext().getFilesDir().getPath();
+          fileName.setText(path.toString());
         }
             break;
     }
@@ -116,6 +134,7 @@ public class AddSongsActivity
   @Override
   protected void onResume() {
     super.onResume();
+
 
     // load the data
     presenter.fetchData();
@@ -130,7 +149,26 @@ public class AddSongsActivity
   }
 
   @Override
+  public void displayError() {
+    Toast.makeText(this, "Hubo un error", Toast.LENGTH_SHORT).show();
+  }
+
+  @Override
+  public void displaySuccess() {
+    Toast.makeText(this, "Cancion subida", Toast.LENGTH_SHORT).show();
+  }
+
+  @Override
   public void injectPresenter(AddSongsContract.Presenter presenter) {
     this.presenter = presenter;
   }
+
+private void askPermission(String permission, int requestCode){
+    if(ContextCompat.checkSelfPermission(this, permission)!= PackageManager.PERMISSION_GRANTED){
+      ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
+    }else{
+      Toast.makeText(this, "Ya tienes permisos", Toast.LENGTH_SHORT).show();
+    }
+}
+
 }

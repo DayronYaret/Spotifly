@@ -1,8 +1,11 @@
 package es.ulpgc.dayron.spotifly.addSongs;
 
+import android.net.Uri;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
+
+import es.ulpgc.dayron.spotifly.app.RepositoryContract;
 
 public class AddSongsPresenter implements AddSongsContract.Presenter {
 
@@ -68,6 +71,20 @@ public class AddSongsPresenter implements AddSongsContract.Presenter {
   @Override
   public void goSongs() {
 
+  }
+
+  @Override
+  public void uploadSong(String songTitle, String songArtist, Uri path) {
+    model.uploadSong(songTitle, songArtist, path, new RepositoryContract.UploadSong() {
+      @Override
+      public void onUploadSong(boolean error) {
+          if(error==false){
+            view.get().displaySuccess();
+          }else{
+            view.get().displayError();
+          }
+      }
+    });
   }
 
   @Override

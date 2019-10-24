@@ -1,6 +1,10 @@
 package es.ulpgc.dayron.spotifly.addSongs;
 
+import android.net.Uri;
+
 import java.lang.ref.WeakReference;
+
+import es.ulpgc.dayron.spotifly.app.RepositoryContract;
 
 public interface AddSongsContract {
 
@@ -8,6 +12,10 @@ public interface AddSongsContract {
     void injectPresenter(Presenter presenter);
 
     void displayData(AddSongsViewModel viewModel);
+
+    void displayError();
+
+    void displaySuccess();
   }
 
   interface Presenter {
@@ -28,10 +36,14 @@ public interface AddSongsContract {
     void goAddFriends();
 
     void goSongs();
+
+    void uploadSong(String songTitle, String songArtist, Uri path);
   }
 
   interface Model {
     String fetchData();
+
+    void uploadSong(String title, String artist, Uri path, RepositoryContract.UploadSong callback);
   }
 
   interface Router {

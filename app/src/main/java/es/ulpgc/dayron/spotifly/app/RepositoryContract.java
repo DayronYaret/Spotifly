@@ -1,5 +1,7 @@
 package es.ulpgc.dayron.spotifly.app;
 
+import android.net.Uri;
+
 public interface RepositoryContract {
   interface LoginUser{
     void onUserLogIn(boolean error); //devuelve datos a presenter
@@ -26,4 +28,11 @@ public interface RepositoryContract {
     void onForgotPassword(boolean error);
   }
   void forgotPassword(String email, RepositoryContract.ForgotPassword callback);
+
+  interface UploadSong{
+    void onUploadSong(boolean error);
+  }
+
+  void uploadSong(String title, String artist, Uri path, RepositoryContract.UploadSong callback);
 }
+
