@@ -13,6 +13,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -36,6 +37,7 @@ public class Repository implements RepositoryContract {
   private FirebaseStorage storage = FirebaseStorage.getInstance();
   private StorageReference storageReference = storage.getReference();
   private String url;
+  private DatabaseReference songDataRef;
 
   public static RepositoryContract getInstance(Context context) {
     if (INSTANCE == null) {
@@ -46,6 +48,7 @@ public class Repository implements RepositoryContract {
 
   private Repository(Context context) {
     this.context = context;
+    this.songDataRef= FirebaseDatabase.getInstance().getReference().child("songs");
   }
 
   @Override
@@ -145,8 +148,7 @@ public class Repository implements RepositoryContract {
   }
 
   @Override
-  public void uploadSong(String title, String artist, Uri path, final UploadSong callback) {
-
+  public void uploadSong(final String title, final String artist, Uri path, final UploadSong callback) {
     Uri file = Uri.fromFile(new File(path.getPath()));
     final StorageReference songRef = storageReference.child("songs/"+file.getLastPathSegment());
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -160,6 +162,37 @@ public class Repository implements RepositoryContract {
       @Override
       public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
         callback.onUploadSong(false);
+      }
+    });
+    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+      @Override
+      public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+        if (!task.isSuccessful()) {
+          throw task.getException();
+        }
+
+        // Continue with the task to get the download URL
+        return songRef.getDownloadUrl();
+      }
+    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+      @Override
+      public void onComplete(@NonNull Task<Uri> task) {
+        if (task.isSuccessful()) {
+          Uri downloadUri = task.getResult();
+          url = downloadUri.toString();
+          Song cancion = new Song(url, title, artist);
+          Log.d("Repo", cancion.getArtist());
+          Log.d("Repo", cancion.getTitle());
+          Log.d("Repo", cancion.getUrl());
+          songDataRef.child(title).setValue(cancion).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+              callback.onUploadSong(false);
+            }
+          });
+        } else {
+          Log.d("Repo", "No se consiguió la url");
+        }
       }
     });
      }

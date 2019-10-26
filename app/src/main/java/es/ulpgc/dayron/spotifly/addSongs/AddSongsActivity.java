@@ -53,8 +53,7 @@ public class AddSongsActivity
     searchFile=findViewById(R.id.searchButton);
     cancel=findViewById(R.id.cancelButton);
     submit = findViewById(R.id.submitButton);
-    songTitle = title.toString();
-    songArtist=artist.toString();
+
 
     cancel.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -66,6 +65,8 @@ public class AddSongsActivity
       @Override
       public void onClick(View view) {
         //TODO: presenter.uploadSong();
+        songTitle = title.getText().toString();
+        songArtist= artist.getText().toString();
         presenter.uploadSong(songTitle, songArtist, path);
       }
     });
