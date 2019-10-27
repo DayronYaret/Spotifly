@@ -3,8 +3,10 @@ package es.ulpgc.dayron.spotifly.songs;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 import es.ulpgc.dayron.spotifly.app.RepositoryContract;
+import es.ulpgc.dayron.spotifly.app.Song;
 
 public class SongsPresenter implements SongsContract.Presenter {
 
@@ -14,6 +16,7 @@ public class SongsPresenter implements SongsContract.Presenter {
   private SongsViewModel viewModel;
   private SongsContract.Model model;
   private SongsContract.Router router;
+  //private ArrayList<String> listaCanciones = new ArrayList<>();
 
   public SongsPresenter(SongsState state) {
     viewModel = state;
@@ -37,6 +40,8 @@ public class SongsPresenter implements SongsContract.Presenter {
     }
 
     // call the model
+    fillSongsArray();
+
     String data = model.fetchData();
 
     // set view state
@@ -59,6 +64,7 @@ public class SongsPresenter implements SongsContract.Presenter {
       public void isUserLogin(boolean isLogin) {
         if(isLogin==true){
           //cargar canciones
+          fillSongsArray();
         }else{
           router.goLogin();
         }
@@ -95,6 +101,36 @@ public class SongsPresenter implements SongsContract.Presenter {
     router.goAddSongs();
   }
 
+  @Override
+  public void selectSongListData(String title) {
+    router.passDataToNextScreen(title);
+    router.goPlayer();
+  }
+
+  @Override
+  public ArrayList<String> fillSongsArray() {
+     return model.fillSongsArray(new RepositoryContract.FillSongsArray() {
+      @Override
+      public void onFillSongsArray(boolean error, ArrayList<String> canciones){
+        if(error == false){
+          view.get().displaySuccess();
+          viewModel.canciones=canciones;
+          view.get().displaySongs(viewModel);
+        }else{
+          view.get().displayFailure();
+          Log.d("pres", "fallo al coger el array");
+        }
+      }
+    });
+    //Log.d("pres", listaCanciones.toString());
+  }
+
+  /**
+  @Override
+  public ArrayList<String> devolverArray() {
+    return listaCanciones;
+  }
+**/
   @Override
   public void injectView(WeakReference<SongsContract.View> view) {
     this.view = view;

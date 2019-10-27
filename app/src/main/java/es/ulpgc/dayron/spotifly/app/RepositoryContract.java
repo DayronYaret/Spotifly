@@ -2,6 +2,8 @@ package es.ulpgc.dayron.spotifly.app;
 
 import android.net.Uri;
 
+import java.util.ArrayList;
+
 public interface RepositoryContract {
   interface LoginUser{
     void onUserLogIn(boolean error); //devuelve datos a presenter
@@ -34,5 +36,14 @@ public interface RepositoryContract {
   }
 
   void uploadSong(String title, String artist, Uri path, RepositoryContract.UploadSong callback);
+
+  interface FillSongsArray{
+    void onFillSongsArray(boolean error, ArrayList<String> listaCanciones);
+  }
+ArrayList<String> fillSongsArray(RepositoryContract.FillSongsArray callback);
+
+
 }
+
+
 

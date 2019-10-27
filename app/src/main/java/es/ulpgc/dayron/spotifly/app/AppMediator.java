@@ -14,98 +14,116 @@ import es.ulpgc.dayron.spotifly.songs.SongsState;
 
 public class AppMediator extends Application {
 
-    private LoginState loginState;
-    private SongsState songsState;
-    private RegisterState registerState;
-    private PlayerState playerState;
-    private FriendSongState friendSongState;
-    private FriendsState friendsState;
-    private ForgotPasswordState forgotPasswordState;
-    private AddSongsState addSongsState;
-    private AddFriendsState addFriendsState;
+  private LoginState loginState;
+  private SongsState songsState;
+  private RegisterState registerState;
+  private PlayerState playerState;
+  private FriendSongState friendSongState;
+  private FriendsState friendsState;
+  private ForgotPasswordState forgotPasswordState;
+  private AddSongsState addSongsState;
+  private AddFriendsState addFriendsState;
+  private Song song;
+  private String songTitle;
 
-    public AppMediator() {
-        loginState = new LoginState();
-        songsState = new SongsState();
-        registerState = new RegisterState();
-        playerState= new PlayerState();
-        friendSongState = new FriendSongState();
-        friendsState = new FriendsState();
-        forgotPasswordState= new ForgotPasswordState();
-        addSongsState = new AddSongsState();
-        addFriendsState = new AddFriendsState();
-    }
+  public AppMediator() {
+    loginState = new LoginState();
+    songsState = new SongsState();
+    registerState = new RegisterState();
+    playerState = new PlayerState();
+    friendSongState = new FriendSongState();
+    friendsState = new FriendsState();
+    forgotPasswordState = new ForgotPasswordState();
+    addSongsState = new AddSongsState();
+    addFriendsState = new AddFriendsState();
+    songTitle = "";
+  }
 
 
-    public LoginState getLoginState() {
-        return loginState;
-    }
+  public LoginState getLoginState() {
+    return loginState;
+  }
 
-    public void setLoginState(LoginState loginState) {
-        this.loginState = loginState;
-    }
+  public void setLoginState(LoginState loginState) {
+    this.loginState = loginState;
+  }
 
-    public SongsState getSongsState() {
-        return songsState;
-    }
+  public SongsState getSongsState() {
+    return songsState;
+  }
 
-    public void setSongsState(SongsState songsState) {
-        this.songsState = songsState;
-    }
+  public void setSongsState(SongsState songsState) {
+    this.songsState = songsState;
+  }
 
-    public RegisterState getRegisterState() {
-        return registerState;
-    }
+  public RegisterState getRegisterState() {
+    return registerState;
+  }
 
-    public void setRegisterState(RegisterState registerState) {
-        this.registerState = registerState;
-    }
+  public void setRegisterState(RegisterState registerState) {
+    this.registerState = registerState;
+  }
 
-    public PlayerState getPlayerState() {
-        return playerState;
-    }
+  public PlayerState getPlayerState() {
+    return playerState;
+  }
 
-    public void setPlayerState(PlayerState playerState) {
-        this.playerState = playerState;
-    }
+  public void setPlayerState(PlayerState playerState) {
+    this.playerState = playerState;
+  }
 
-    public FriendSongState getFriendSongState() {
-        return friendSongState;
-    }
+  public FriendSongState getFriendSongState() {
+    return friendSongState;
+  }
 
-    public void setFriendSongState(FriendSongState friendSongState) {
-        this.friendSongState = friendSongState;
-    }
+  public void setFriendSongState(FriendSongState friendSongState) {
+    this.friendSongState = friendSongState;
+  }
 
-    public FriendsState getFriendsState() {
-        return friendsState;
-    }
+  public FriendsState getFriendsState() {
+    return friendsState;
+  }
 
-    public void setFriendsState(FriendsState friendsState) {
-        this.friendsState = friendsState;
-    }
+  public void setFriendsState(FriendsState friendsState) {
+    this.friendsState = friendsState;
+  }
 
-    public ForgotPasswordState getForgotPasswordState() {
-        return forgotPasswordState;
-    }
+  public ForgotPasswordState getForgotPasswordState() {
+    return forgotPasswordState;
+  }
 
-    public void setForgotPasswordState(ForgotPasswordState forgotPasswordState) {
-        this.forgotPasswordState = forgotPasswordState;
-    }
+  public void setForgotPasswordState(ForgotPasswordState forgotPasswordState) {
+    this.forgotPasswordState = forgotPasswordState;
+  }
 
-    public AddSongsState getAddSongsState() {
-        return addSongsState;
-    }
+  public AddSongsState getAddSongsState() {
+    return addSongsState;
+  }
 
-    public void setAddSongsState(AddSongsState addSongsState) {
-        this.addSongsState = addSongsState;
-    }
+  public void setAddSongsState(AddSongsState addSongsState) {
+    this.addSongsState = addSongsState;
+  }
 
-    public AddFriendsState getAddFriendsState() {
-        return addFriendsState;
-    }
+  public AddFriendsState getAddFriendsState() {
+    return addFriendsState;
+  }
 
-    public void setAddFriendsState(AddFriendsState addFriendsState) {
-        this.addFriendsState = addFriendsState;
-    }
+  public void setAddFriendsState(AddFriendsState addFriendsState) {
+    this.addFriendsState = addFriendsState;
+  }
+
+  public void setSong(Song item) {
+    this.song = item;
+  }
+
+  public Song getSong() {
+    return song;
+  }
+
+  public void setSongsTitle(String title) {
+  }
+
+  public String getSongTitle() {
+    return songTitle;
+  }
 }

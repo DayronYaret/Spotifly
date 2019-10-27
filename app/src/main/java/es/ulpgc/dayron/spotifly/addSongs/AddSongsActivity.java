@@ -36,6 +36,7 @@ public class AddSongsActivity
   private String songTitle, songArtist;
   private Uri path;
   private final int READ_EXTERNAL_STORAGE = 1;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

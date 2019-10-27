@@ -17,14 +17,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnPausedListener;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 
@@ -37,7 +35,8 @@ public class Repository implements RepositoryContract {
   private FirebaseStorage storage = FirebaseStorage.getInstance();
   private StorageReference storageReference = storage.getReference();
   private String url;
-  private DatabaseReference songDataRef;
+  private DatabaseReference songsDataRefActivitySongs;
+  private ArrayList<String> songList;
 
   public static RepositoryContract getInstance(Context context) {
     if (INSTANCE == null) {
@@ -48,7 +47,8 @@ public class Repository implements RepositoryContract {
 
   private Repository(Context context) {
     this.context = context;
-    this.songDataRef= FirebaseDatabase.getInstance().getReference().child("songs");
+    this.songsDataRefActivitySongs = FirebaseDatabase.getInstance().getReference().child("songs");
+    this.songList = new ArrayList<>();
   }
 
   @Override
@@ -150,7 +150,7 @@ public class Repository implements RepositoryContract {
   @Override
   public void uploadSong(final String title, final String artist, Uri path, final UploadSong callback) {
     Uri file = Uri.fromFile(new File(path.getPath()));
-    final StorageReference songRef = storageReference.child("songs/"+file.getLastPathSegment());
+    final StorageReference songRef = storageReference.child("songs/" + file.getLastPathSegment());
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     UploadTask uploadTask = songRef.putFile((file));
     uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -184,7 +184,7 @@ public class Repository implements RepositoryContract {
           Log.d("Repo", cancion.getArtist());
           Log.d("Repo", cancion.getTitle());
           Log.d("Repo", cancion.getUrl());
-          songDataRef.child(title).setValue(cancion).addOnCompleteListener(new OnCompleteListener<Void>() {
+          songsDataRefActivitySongs.child(title).setValue(cancion).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
               callback.onUploadSong(false);
@@ -195,6 +195,29 @@ public class Repository implements RepositoryContract {
         }
       }
     });
-     }
+  }
+
+  @Override
+  public ArrayList<String> fillSongsArray(final FillSongsArray callback) {
+    songList.clear();
+    songsDataRefActivitySongs.addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+          String songTitle = (String) dataSnapshot1.child("title").getValue();
+          Log.d("Repo", songTitle);
+          songList.add(songTitle);
+        }
+        Log.d("Repo", songList.toString());
+        callback.onFillSongsArray(false, songList);
+      }
+
+      @Override
+      public void onCancelled(@NonNull DatabaseError databaseError) {
+
+      }
+    });
+    return songList;
+  }
 
 }

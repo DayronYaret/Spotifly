@@ -3,8 +3,10 @@ package es.ulpgc.dayron.spotifly.songs;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 import es.ulpgc.dayron.spotifly.app.RepositoryContract;
+import es.ulpgc.dayron.spotifly.app.Song;
 
 
 public class SongsModel implements SongsContract.Model {
@@ -29,5 +31,10 @@ public class SongsModel implements SongsContract.Model {
   @Override
   public void signOut(RepositoryContract.SignOut callback) {
     repository.signOut(callback);
+  }
+
+  @Override
+  public ArrayList<String> fillSongsArray(RepositoryContract.FillSongsArray callback) {
+    return repository.fillSongsArray(callback);
   }
 }

@@ -7,8 +7,10 @@ import android.content.Context;
 import es.ulpgc.dayron.spotifly.addFriends.AddFriendsActivity;
 import es.ulpgc.dayron.spotifly.addSongs.AddSongsActivity;
 import es.ulpgc.dayron.spotifly.app.AppMediator;
+import es.ulpgc.dayron.spotifly.app.Song;
 import es.ulpgc.dayron.spotifly.friends.FriendsActivity;
 import es.ulpgc.dayron.spotifly.login.LoginActivity;
+import es.ulpgc.dayron.spotifly.player.PlayerActivity;
 
 public class SongsRouter implements SongsContract.Router {
 
@@ -28,8 +30,8 @@ public class SongsRouter implements SongsContract.Router {
   }
 
   @Override
-  public void passDataToNextScreen(SongsState state) {
-    mediator.setSongsState(state);
+  public void passDataToNextScreen(String title) {
+    mediator.setSongsTitle(title);
   }
 
   @Override
@@ -64,6 +66,14 @@ public class SongsRouter implements SongsContract.Router {
   public void goAddSongs() {
     Context context = mediator.getApplicationContext();
     Intent intent = new Intent(context, AddSongsActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    context.startActivity(intent);
+  }
+
+  @Override
+  public void goPlayer() {
+    Context context = mediator.getApplicationContext();
+    Intent intent = new Intent(context, PlayerActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     context.startActivity(intent);
   }

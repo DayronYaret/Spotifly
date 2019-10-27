@@ -1,8 +1,10 @@
 package es.ulpgc.dayron.spotifly.songs;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 import es.ulpgc.dayron.spotifly.app.RepositoryContract;
+import es.ulpgc.dayron.spotifly.app.Song;
 
 public interface SongsContract {
 
@@ -10,6 +12,12 @@ public interface SongsContract {
     void injectPresenter(Presenter presenter);
 
     void displayData(SongsViewModel viewModel);
+
+    void displaySuccess();
+
+    void displayFailure();
+
+    void displaySongs(SongsViewModel viewModel);
   }
 
   interface Presenter {
@@ -32,18 +40,25 @@ public interface SongsContract {
     void goAddFriends();
 
     void goAddSongs();
+
+    void selectSongListData(String title);
+
+    ArrayList<String> fillSongsArray();
+
+    //ArrayList<String> devolverArray();
   }
 
   interface Model {
     String fetchData();
     void isLogin(RepositoryContract.IsUserLogin callback);
     void signOut(RepositoryContract.SignOut callback);
+    ArrayList<String> fillSongsArray(RepositoryContract.FillSongsArray callback);
   }
 
   interface Router {
     void navigateToNextScreen();
 
-    void passDataToNextScreen(SongsState state);
+    void passDataToNextScreen(String state);
 
     SongsState getDataFromPreviousScreen();
 
@@ -54,5 +69,7 @@ public interface SongsContract {
     void goAddFriends();
 
     void goAddSongs();
+
+    void goPlayer();
   }
 }
