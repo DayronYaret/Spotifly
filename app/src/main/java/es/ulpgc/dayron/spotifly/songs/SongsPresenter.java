@@ -36,7 +36,7 @@ public class SongsPresenter implements SongsContract.Presenter {
       // update the view
       view.get().displayData(viewModel);
 
-      return;
+
     }
 
     // call the model

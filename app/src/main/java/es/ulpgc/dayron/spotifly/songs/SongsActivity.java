@@ -93,7 +93,7 @@ public class SongsActivity
 
     // load the data
     presenter.isLogin();
-    //presenter.fetchData();
+    presenter.fetchData();
 
   }
 

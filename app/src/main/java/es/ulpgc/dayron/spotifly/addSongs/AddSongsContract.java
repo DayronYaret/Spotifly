@@ -16,6 +16,8 @@ public interface AddSongsContract {
     void displayError();
 
     void displaySuccess();
+
+    void terminar();
   }
 
   interface Presenter {

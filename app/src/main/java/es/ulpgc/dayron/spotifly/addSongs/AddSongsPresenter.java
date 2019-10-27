@@ -2,6 +2,7 @@ package es.ulpgc.dayron.spotifly.addSongs;
 
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 
 import java.lang.ref.WeakReference;
 
@@ -80,6 +81,7 @@ public class AddSongsPresenter implements AddSongsContract.Presenter {
       public void onUploadSong(boolean error) {
           if(error==false){
             view.get().displaySuccess();
+            view.get().terminar();
           }else{
             view.get().displayError();
           }

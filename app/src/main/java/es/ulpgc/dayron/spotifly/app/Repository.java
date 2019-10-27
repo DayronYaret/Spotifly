@@ -47,7 +47,6 @@ public class Repository implements RepositoryContract {
 
   private Repository(Context context) {
     this.context = context;
-    this.songsDataRefActivitySongs = FirebaseDatabase.getInstance().getReference().child("songs");
     this.songList = new ArrayList<>();
   }
 
@@ -199,10 +198,15 @@ public class Repository implements RepositoryContract {
 
   @Override
   public ArrayList<String> fillSongsArray(final FillSongsArray callback) {
-    songList.clear();
+    if(songsDataRefActivitySongs!=null){
+      return null;
+    }
+
+    songsDataRefActivitySongs = FirebaseDatabase.getInstance().getReference().child("songs");
     songsDataRefActivitySongs.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        songList.clear();
         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
           String songTitle = (String) dataSnapshot1.child("title").getValue();
           Log.d("Repo", songTitle);

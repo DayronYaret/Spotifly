@@ -12,41 +12,14 @@
         android:background="@color/blanco">
 
         <LinearLayout
-            android:id="@+id/titulo"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:orientation="horizontal"
-            android:background="@color/morado416"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8sp"
-                android:layout_marginTop="8sp"
-                android:textColor="@color/blanco"
-                android:textSize="30sp"
-                tools:text="@string/player" />
-
-            <ImageButton
-                android:id="@+id/imageButtonFriend"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/morado416"
-                app:srcCompat="@drawable/friend" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/friendAndTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="100sp"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/titulo">
+            android:orientation="vertical"
+            tools:layout_editor_absoluteY="175dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="100sp">
 
             <TextView
                 android:id="@+id/textViewFriendName"
