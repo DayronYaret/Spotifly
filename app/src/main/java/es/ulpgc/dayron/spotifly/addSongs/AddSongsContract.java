@@ -46,6 +46,8 @@ public interface AddSongsContract {
     String fetchData();
 
     void uploadSong(String title, String artist, Uri path, RepositoryContract.UploadSong callback);
+
+    void signOut(RepositoryContract.SignOut signOut);
   }
 
   interface Router {
@@ -54,5 +56,13 @@ public interface AddSongsContract {
     void passDataToNextScreen(AddSongsState state);
 
     AddSongsState getDataFromPreviousScreen();
+
+    void goFriends();
+
+    void goAddFriends();
+
+    void goSongs();
+
+    void goLogin();
   }
 }

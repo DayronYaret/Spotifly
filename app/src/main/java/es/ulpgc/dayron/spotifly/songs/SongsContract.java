@@ -18,6 +18,8 @@ public interface SongsContract {
     void displayFailure();
 
     void displaySongs(SongsViewModel viewModel);
+
+    void finishActivity();
   }
 
   interface Presenter {

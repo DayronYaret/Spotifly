@@ -6,5 +6,5 @@ public class SongsViewModel {
 
   // put the view state here
   public String data;
-  public ArrayList<String> canciones;
+  public ArrayList<String> canciones = new ArrayList<>();
 }

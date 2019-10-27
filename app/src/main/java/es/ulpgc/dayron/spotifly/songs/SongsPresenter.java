@@ -40,21 +40,18 @@ public class SongsPresenter implements SongsContract.Presenter {
     }
 
     // call the model
-    fillSongsArray();
-
-    String data = model.fetchData();
 
     // set view state
-    viewModel.data = data;
 
     // update the view
-    view.get().displayData(viewModel);
+    view.get().displaySongs(viewModel);
 
   }
 
   @Override
   public void goLogin() {
     router.goLogin();
+    view.get().finishActivity();
   }
 
   @Override

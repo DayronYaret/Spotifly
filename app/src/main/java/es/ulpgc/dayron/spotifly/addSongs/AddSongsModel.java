@@ -24,4 +24,9 @@ public class AddSongsModel implements AddSongsContract.Model {
   public void uploadSong(String title, String artist, Uri path, RepositoryContract.UploadSong callback) {
     repository.uploadSong(title, artist, path, callback);
   }
+
+  @Override
+  public void signOut(RepositoryContract.SignOut callback) {
+    repository.signOut(callback);
+  }
 }

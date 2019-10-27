@@ -124,8 +124,15 @@ public class SongsActivity
         listAdapter.setItems(canciones);
       }
     });
+  }
+  @Override
+  public void finishActivity(){
+    finish();
+  }
 
-
+  @Override
+  public void onBackPressed() {
+    finishAffinity();
   }
 
   @Override

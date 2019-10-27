@@ -51,27 +51,36 @@ public class AddSongsPresenter implements AddSongsContract.Presenter {
 
   @Override
   public void SignOut() {
-
+    model.signOut(new RepositoryContract.SignOut() {
+      @Override
+      public void userSignOut(boolean isLogout) {
+        if(isLogout==true){
+          goLogin();
+        }else{
+          //no se que poner aqui
+        }
+      }
+    });
   }
 
   @Override
   public void goLogin() {
-
+    router.goLogin();
   }
 
   @Override
   public void goFriends() {
-
+    router.goFriends();
   }
 
   @Override
   public void goAddFriends() {
-
+    router.goAddFriends();
   }
 
   @Override
   public void goSongs() {
-
+    router.goSongs();
   }
 
   @Override
