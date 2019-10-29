@@ -11,6 +11,7 @@
         android:textColor="@color/negro"
         android:textSize="18sp"
         android:text="@string/songTitle"
-        android:layout_marginBottom="30sp"/>
+        android:layout_marginBottom="10sp"
+        android:layout_marginTop="20sp"/>
 
 </LinearLayout>
