@@ -11,6 +11,7 @@ import es.ulpgc.dayron.spotifly.login.LoginState;
 import es.ulpgc.dayron.spotifly.player.PlayerState;
 import es.ulpgc.dayron.spotifly.register.RegisterState;
 import es.ulpgc.dayron.spotifly.songs.SongsState;
+import es.ulpgc.dayron.spotifly.users.UsersState;
 
 public class AppMediator extends Application {
 
@@ -23,6 +24,7 @@ public class AppMediator extends Application {
   private ForgotPasswordState forgotPasswordState;
   private AddSongsState addSongsState;
   private AddFriendsState addFriendsState;
+  private UsersState usersState;
   private Song song;
   private String songTitle;
 
@@ -37,6 +39,7 @@ public class AppMediator extends Application {
     addSongsState = new AddSongsState();
     addFriendsState = new AddFriendsState();
     songTitle = "";
+    usersState = new UsersState();
   }
 
 
@@ -125,5 +128,13 @@ public class AppMediator extends Application {
 
   public String getSongTitle() {
     return songTitle;
+  }
+
+  public UsersState getUsersState() {
+    return usersState;
+  }
+
+  public void setUsersState(UsersState state) {
+    this.usersState=state;
   }
 }

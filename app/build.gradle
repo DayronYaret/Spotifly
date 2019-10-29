@@ -43,4 +43,3 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview-selection:$recyclerview_version"
 }
 apply plugin: 'com.google.gms.google-services'
-
