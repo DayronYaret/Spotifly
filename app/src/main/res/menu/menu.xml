@@ -5,15 +5,12 @@
         android:id="@+id/logOutOption"
         android:title="@string/logout" />
     <item
-        android:id="@+id/friendsOption"
-        android:title="@string/friend" />
-    <item
-        android:id="@+id/addFriendsOption"
-        android:title="@string/addFriends" />
-    <item
         android:id="@+id/songsOption"
         android:title="@string/songs" />
     <item
         android:id="@+id/addSongsOption"
         android:title="@string/addSongs" />
+    <item
+        android:id="@+id/usersOption"
+        android:title="@string/users" />
 </menu>

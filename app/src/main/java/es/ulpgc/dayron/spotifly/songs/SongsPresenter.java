@@ -10,136 +10,126 @@ import es.ulpgc.dayron.spotifly.app.Song;
 
 public class SongsPresenter implements SongsContract.Presenter {
 
-  public static String TAG = SongsPresenter.class.getSimpleName();
+    public static String TAG = SongsPresenter.class.getSimpleName();
 
-  private WeakReference<SongsContract.View> view;
-  private SongsViewModel viewModel;
-  private SongsContract.Model model;
-  private SongsContract.Router router;
-  //private ArrayList<String> listaCanciones = new ArrayList<>();
+    private WeakReference<SongsContract.View> view;
+    private SongsViewModel viewModel;
+    private SongsContract.Model model;
+    private SongsContract.Router router;
+    //private ArrayList<String> listaCanciones = new ArrayList<>();
 
-  public SongsPresenter(SongsState state) {
-    viewModel = state;
-  }
+    public SongsPresenter(SongsState state) {
+        viewModel = state;
+    }
 
-  @Override
-  public void fetchData() {
-    // Log.e(TAG, "fetchData()");
+    @Override
+    public void fetchData() {
+        // Log.e(TAG, "fetchData()");
 
-    // use passed state if is necessary
-    SongsState state = router.getDataFromPreviousScreen();
-    if (state != null) {
+        // use passed state if is necessary
+        SongsState state = router.getDataFromPreviousScreen();
+        if (state != null) {
 
-      // update view and model state
-      viewModel.data = state.data;
+            // update view and model state
+            viewModel.data = state.data;
 
-      // update the view
-      view.get().displayData(viewModel);
+            // update the view
+            view.get().displayData(viewModel);
 
+
+        }
+
+        // call the model
+
+        // set view state
+
+        // update the view
+        view.get().displaySongs(viewModel);
 
     }
 
-    // call the model
+    @Override
+    public void goLogin() {
+        router.goLogin();
+        view.get().finishActivity();
+    }
 
-    // set view state
+    @Override
+    public void isLogin() {
+        model.isLogin(new RepositoryContract.IsUserLogin() {
+            @Override
+            public void isUserLogin(boolean isLogin) {
+                if (isLogin == true) {
+                    //cargar canciones
+                    fillSongsArray();
+                } else {
+                    router.goLogin();
+                }
+            }
+        });
+    }
 
-    // update the view
-    view.get().displaySongs(viewModel);
 
-  }
+    @Override
+    public void SignOut() {
+        model.signOut(new RepositoryContract.SignOut() {
+            @Override
+            public void userSignOut(boolean isLogout) {
+                if (isLogout == true) {
+                    goLogin();
+                } else {
+                    //no se que poner aqui
+                }
+            }
+        });
+    }
 
-  @Override
-  public void goLogin() {
-    router.goLogin();
-    view.get().finishActivity();
-  }
+    @Override
+    public void goAddSongs() {
+        router.goAddSongs();
+    }
 
-  @Override
-  public void isLogin() {
-    model.isLogin(new RepositoryContract.IsUserLogin() {
-      @Override
-      public void isUserLogin(boolean isLogin) {
-        if(isLogin==true){
-          //cargar canciones
-          fillSongsArray();
-        }else{
-          router.goLogin();
-        }
-      }
-    });
-  }
+    @Override
+    public void selectSongListData(String title) {
+        router.passDataToNextScreen(title);
+        router.goPlayer();
+    }
 
-  @Override
-  public void SignOut() {
-    model.signOut(new RepositoryContract.SignOut() {
-      @Override
-      public void userSignOut(boolean isLogout) {
-        if(isLogout==true){
-          goLogin();
-        }else{
-          //no se que poner aqui
-        }
-      }
-    });
-  }
+    @Override
+    public void fillSongsArray() {
+        model.fillSongsArray(new RepositoryContract.FillSongsArray() {
+            @Override
+            public void onFillSongsArray(boolean error, ArrayList<String> canciones) {
+                if (error == false) {
+                    view.get().displaySuccess();
+                    viewModel.canciones = canciones;
+                    view.get().displaySongs(viewModel);
+                } else {
+                    view.get().displayFailure();
+                    Log.d("pres", "fallo al coger el array");
+                }
+            }
+        });
+        //Log.d("pres", listaCanciones.toString());
+    }
 
-  @Override
-  public void goFriends() {
-    router.goFriends();
-  }
+    @Override
+    public void goUsers() {
+        router.goUsers();
+    }
 
-  @Override
-  public void goAddFriends() {
-    router.goAddFriends();
-  }
+    @Override
+    public void injectView(WeakReference<SongsContract.View> view) {
+        this.view = view;
+    }
 
-  @Override
-  public void goAddSongs() {
-    router.goAddSongs();
-  }
+    @Override
+    public void injectModel(SongsContract.Model model) {
+        this.model = model;
+    }
 
-  @Override
-  public void selectSongListData(String title) {
-    router.passDataToNextScreen(title);
-    router.goPlayer();
-  }
-
-  @Override
-  public ArrayList<String> fillSongsArray() {
-     return model.fillSongsArray(new RepositoryContract.FillSongsArray() {
-      @Override
-      public void onFillSongsArray(boolean error, ArrayList<String> canciones){
-        if(error == false){
-          view.get().displaySuccess();
-          viewModel.canciones=canciones;
-          view.get().displaySongs(viewModel);
-        }else{
-          view.get().displayFailure();
-          Log.d("pres", "fallo al coger el array");
-        }
-      }
-    });
-    //Log.d("pres", listaCanciones.toString());
-  }
-
-  /**
-  @Override
-  public ArrayList<String> devolverArray() {
-    return listaCanciones;
-  }
-**/
-  @Override
-  public void injectView(WeakReference<SongsContract.View> view) {
-    this.view = view;
-  }
-
-  @Override
-  public void injectModel(SongsContract.Model model) {
-    this.model = model;
-  }
-
-  @Override
-  public void injectRouter(SongsContract.Router router) {
-    this.router = router;
-  }
+    @Override
+    public void injectRouter(SongsContract.Router router) {
+        this.router = router;
+    }
 }

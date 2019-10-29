@@ -36,7 +36,6 @@ public class UsersActivity
     //Log.e(TAG, "displayData()");
 
     // deal with the data
-    ((TextView) findViewById(R.id.data)).setText(viewModel.data);
   }
 
   @Override

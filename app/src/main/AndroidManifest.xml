@@ -26,13 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".addFriends.AddFriendsActivity"
-            android:screenOrientation="portrait"></activity>
         <activity android:name=".addSongs.AddSongsActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".forgotPassword.ForgotPasswordActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".friends.FriendsActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".friendSong.FriendSongActivity"
             android:screenOrientation="portrait"></activity>
@@ -41,6 +37,8 @@
         <activity android:name=".register.RegisterActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".login.LoginActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".users.UsersActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

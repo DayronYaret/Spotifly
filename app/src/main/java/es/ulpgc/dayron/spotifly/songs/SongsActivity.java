@@ -67,12 +67,8 @@ public class SongsActivity
         presenter.goLogin();
         break;
 
-      case R.id.friendsOption:
-        presenter.goFriends();
-        break;
-
-      case R.id.addFriendsOption:
-        presenter.goAddFriends();
+      case R.id.usersOption:
+        presenter.goUsers();
         break;
 
       case R.id.songsOption:
@@ -113,6 +109,7 @@ public class SongsActivity
   public void displayFailure() {
     Toast.makeText(this, "Fallo al crear la lista", Toast.LENGTH_SHORT).show();
   }
+
 
   @Override
   public void displaySongs(SongsViewModel viewModel) {

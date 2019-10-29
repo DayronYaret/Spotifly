@@ -33,13 +33,11 @@ public interface AddSongsContract {
 
     void goLogin();
 
-    void goFriends();
-
-    void goAddFriends();
-
     void goSongs();
 
     void uploadSong(String songTitle, String songArtist, Uri path);
+
+      void goUsers();
   }
 
   interface Model {
@@ -57,12 +55,10 @@ public interface AddSongsContract {
 
     AddSongsState getDataFromPreviousScreen();
 
-    void goFriends();
-
-    void goAddFriends();
-
     void goSongs();
 
     void goLogin();
+
+    void goUsers();
   }
 }

@@ -69,16 +69,6 @@ public class AddSongsPresenter implements AddSongsContract.Presenter {
   }
 
   @Override
-  public void goFriends() {
-    router.goFriends();
-  }
-
-  @Override
-  public void goAddFriends() {
-    router.goAddFriends();
-  }
-
-  @Override
   public void goSongs() {
     router.goSongs();
   }
@@ -96,6 +86,11 @@ public class AddSongsPresenter implements AddSongsContract.Presenter {
           }
       }
     });
+  }
+
+  @Override
+  public void goUsers() {
+    router.goUsers();
   }
 
   @Override

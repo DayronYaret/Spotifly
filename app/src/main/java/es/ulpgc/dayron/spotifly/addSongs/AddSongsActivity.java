@@ -100,12 +100,8 @@ public class AddSongsActivity
         presenter.goLogin();
         break;
 
-      case R.id.friendsOption:
-        presenter.goFriends();
-        break;
-
-      case R.id.addFriendsOption:
-        presenter.goAddFriends();
+      case R.id.usersOption:
+        presenter.goUsers();
         break;
 
       case R.id.songsOption:

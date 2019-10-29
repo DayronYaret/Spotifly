@@ -37,17 +37,15 @@ public interface SongsContract {
 
     void SignOut();
 
-    void goFriends();
-
-    void goAddFriends();
-
     void goAddSongs();
 
     void selectSongListData(String title);
 
-    ArrayList<String> fillSongsArray();
+    void fillSongsArray();
 
-    //ArrayList<String> devolverArray();
+      void goUsers();
+
+      //ArrayList<String> devolverArray();
   }
 
   interface Model {
@@ -66,12 +64,10 @@ public interface SongsContract {
 
     void goLogin();
 
-    void goFriends();
-
-    void goAddFriends();
-
     void goAddSongs();
 
     void goPlayer();
+
+    void goUsers();
   }
 }

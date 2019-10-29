@@ -1,16 +1,13 @@
 package es.ulpgc.dayron.spotifly.songs;
 
-import android.util.Log;
-import android.content.Intent;
 import android.content.Context;
+import android.content.Intent;
 
-import es.ulpgc.dayron.spotifly.addFriends.AddFriendsActivity;
 import es.ulpgc.dayron.spotifly.addSongs.AddSongsActivity;
 import es.ulpgc.dayron.spotifly.app.AppMediator;
-import es.ulpgc.dayron.spotifly.app.Song;
-import es.ulpgc.dayron.spotifly.friends.FriendsActivity;
 import es.ulpgc.dayron.spotifly.login.LoginActivity;
 import es.ulpgc.dayron.spotifly.player.PlayerActivity;
+import es.ulpgc.dayron.spotifly.users.UsersActivity;
 
 public class SongsRouter implements SongsContract.Router {
 
@@ -48,19 +45,6 @@ public class SongsRouter implements SongsContract.Router {
     context.startActivity(intent);
   }
 
-  @Override
-  public void goFriends() {
-    Context context = mediator.getApplicationContext();
-    Intent intent = new Intent(context, FriendsActivity.class);
-    context.startActivity(intent);
-  }
-
-  @Override
-  public void goAddFriends() {
-    Context context = mediator.getApplicationContext();
-    Intent intent = new Intent(context, AddFriendsActivity.class);
-    context.startActivity(intent);
-  }
 
   @Override
   public void goAddSongs() {
@@ -74,6 +58,14 @@ public class SongsRouter implements SongsContract.Router {
   public void goPlayer() {
     Context context = mediator.getApplicationContext();
     Intent intent = new Intent(context, PlayerActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    context.startActivity(intent);
+  }
+
+  @Override
+  public void goUsers() {
+    Context context = mediator.getApplicationContext();
+    Intent intent = new Intent(context, UsersActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     context.startActivity(intent);
   }
