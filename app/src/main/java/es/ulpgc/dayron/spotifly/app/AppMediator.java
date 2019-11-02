@@ -4,11 +4,11 @@ import android.app.Application;
 
 import es.ulpgc.dayron.spotifly.addSongs.AddSongsState;
 import es.ulpgc.dayron.spotifly.forgotPassword.ForgotPasswordState;
-import es.ulpgc.dayron.spotifly.friendSong.FriendSongState;
 import es.ulpgc.dayron.spotifly.login.LoginState;
 import es.ulpgc.dayron.spotifly.player.PlayerState;
 import es.ulpgc.dayron.spotifly.register.RegisterState;
 import es.ulpgc.dayron.spotifly.songs.SongsState;
+import es.ulpgc.dayron.spotifly.userSong.UserSongState;
 import es.ulpgc.dayron.spotifly.users.UsersState;
 
 public class AppMediator extends Application {
@@ -17,23 +17,24 @@ public class AppMediator extends Application {
     private SongsState songsState;
     private RegisterState registerState;
     private PlayerState playerState;
-    private FriendSongState friendSongState;
     private ForgotPasswordState forgotPasswordState;
     private AddSongsState addSongsState;
     private UsersState usersState;
+    private UserSongState userSongState;
     private Song song;
     private String songTitle;
+    private String user;
 
     public AppMediator() {
         loginState = new LoginState();
         songsState = new SongsState();
         registerState = new RegisterState();
         playerState = new PlayerState();
-        friendSongState = new FriendSongState();
         forgotPasswordState = new ForgotPasswordState();
         addSongsState = new AddSongsState();
         songTitle = "";
         usersState = new UsersState();
+        userSongState= new UserSongState();
     }
 
 
@@ -67,14 +68,6 @@ public class AppMediator extends Application {
 
     public void setPlayerState(PlayerState playerState) {
         this.playerState = playerState;
-    }
-
-    public FriendSongState getFriendSongState() {
-        return friendSongState;
-    }
-
-    public void setFriendSongState(FriendSongState friendSongState) {
-        this.friendSongState = friendSongState;
     }
 
     public ForgotPasswordState getForgotPasswordState() {
@@ -115,4 +108,16 @@ public class AppMediator extends Application {
     public void setUsersState(UsersState state) {
         this.usersState = state;
     }
+
+    public void setUserSongState(UserSongState state) {
+        this.userSongState=state;
+    }
+
+    public UserSongState getUserSongState() {
+        return userSongState;
+    }
+
+  public void setUser(String user) {
+        this.user=user;
+  }
 }

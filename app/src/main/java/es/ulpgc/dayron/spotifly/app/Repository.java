@@ -36,7 +36,9 @@ public class Repository implements RepositoryContract {
   private StorageReference storageReference = storage.getReference();
   private String url;
   private DatabaseReference songsDataRefActivitySongs;
+  private DatabaseReference usersDataRefActivityUsers;
   private ArrayList<String> songList;
+  private ArrayList<String> usersList;
 
   public static RepositoryContract getInstance(Context context) {
     if (INSTANCE == null) {
@@ -48,6 +50,7 @@ public class Repository implements RepositoryContract {
   private Repository(Context context) {
     this.context = context;
     this.songList = new ArrayList<>();
+    this.usersList = new ArrayList<>();
   }
 
   @Override
@@ -222,6 +225,33 @@ public class Repository implements RepositoryContract {
       }
     });
     return songList;
+  }
+
+  @Override
+  public void fillUsersArray(final FillUsersArray callback) {
+    if(usersDataRefActivityUsers!=null){
+      return;
+    }
+
+    usersDataRefActivityUsers = FirebaseDatabase.getInstance().getReference().child("usuarios");
+    usersDataRefActivityUsers.addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        usersList.clear();
+        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+          String user = (String) dataSnapshot1.child("username").getValue();
+          Log.d("Repo2", user);
+          usersList.add(user);
+        }
+        Log.d("Repo2", usersList.toString());
+        callback.onFillUsersArray(false, usersList);
+      }
+
+      @Override
+      public void onCancelled(@NonNull DatabaseError databaseError) {
+
+      }
+    });
   }
 
 }

@@ -1,13 +1,13 @@
-package es.ulpgc.dayron.spotifly.friendSong;
+package es.ulpgc.dayron.spotifly.userSong;
 
 import java.lang.ref.WeakReference;
 
-public interface FriendSongContract {
+public interface UserSongContract {
 
   interface View {
     void injectPresenter(Presenter presenter);
 
-    void displayData(FriendSongViewModel viewModel);
+    void displayData(UserSongViewModel viewModel);
   }
 
   interface Presenter {
@@ -27,8 +27,8 @@ public interface FriendSongContract {
   interface Router {
     void navigateToNextScreen();
 
-    void passDataToNextScreen(FriendSongState state);
+    void passDataToNextScreen(UserSongState state);
 
-    FriendSongState getDataFromPreviousScreen();
+    UserSongState getDataFromPreviousScreen();
   }
 }

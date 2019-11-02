@@ -30,8 +30,6 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".forgotPassword.ForgotPasswordActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".friendSong.FriendSongActivity"
-            android:screenOrientation="portrait"></activity>
         <activity android:name=".player.PlayerActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".register.RegisterActivity"
@@ -39,6 +37,8 @@
         <activity android:name=".login.LoginActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".users.UsersActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".userSong.UserSongActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

@@ -1,22 +1,23 @@
-package es.ulpgc.dayron.spotifly.friendSong;
+package es.ulpgc.dayron.spotifly.userSong;
 
 import java.lang.ref.WeakReference;
+
 import androidx.fragment.app.FragmentActivity;
 import es.ulpgc.dayron.spotifly.app.AppMediator;
 
-public class FriendSongScreen {
+public class UserSongScreen {
 
-  public static void configure(FriendSongContract.View view) {
+  public static void configure(UserSongContract.View view) {
 
     WeakReference<FragmentActivity> context =
         new WeakReference<>((FragmentActivity) view);
 
     AppMediator mediator = (AppMediator) context.get().getApplication();
-    FriendSongState state = mediator.getFriendSongState();
+    UserSongState state = mediator.getUserSongState();
 
-    FriendSongContract.Router router = new FriendSongRouter(mediator);
-    FriendSongContract.Presenter presenter = new FriendSongPresenter(state);
-    FriendSongContract.Model model = new FriendSongModel();
+    UserSongContract.Router router = new UserSongRouter(mediator);
+    UserSongContract.Presenter presenter = new UserSongPresenter(state);
+    UserSongContract.Model model = new UserSongModel();
     presenter.injectModel(model);
     presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));

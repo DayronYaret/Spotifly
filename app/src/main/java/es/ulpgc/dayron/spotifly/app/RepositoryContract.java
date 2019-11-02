@@ -42,6 +42,11 @@ public interface RepositoryContract {
   }
 ArrayList<String> fillSongsArray(RepositoryContract.FillSongsArray callback);
 
+  interface FillUsersArray{
+    void onFillUsersArray(boolean error, ArrayList<String>listausuarios);
+  }
+  void fillUsersArray(RepositoryContract.FillUsersArray callback);
+
 
 }
 

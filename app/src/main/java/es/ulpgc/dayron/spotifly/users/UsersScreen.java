@@ -5,6 +5,8 @@ import java.lang.ref.WeakReference;
 
 import androidx.fragment.app.FragmentActivity;
 import es.ulpgc.dayron.spotifly.app.AppMediator;
+import es.ulpgc.dayron.spotifly.app.Repository;
+import es.ulpgc.dayron.spotifly.app.RepositoryContract;
 
 public class UsersScreen {
 
@@ -16,9 +18,10 @@ public class UsersScreen {
     AppMediator mediator = (AppMediator) context.get().getApplication();
     UsersState state = mediator.getUsersState();
 
+    RepositoryContract repository= Repository.getInstance(context.get());
     UsersContract.Router router = new UsersRouter(mediator);
     UsersContract.Presenter presenter = new UsersPresenter(state);
-    UsersContract.Model model = new UsersModel();
+    UsersContract.Model model = new UsersModel(repository);
     presenter.injectModel(model);
     presenter.injectRouter(router);
     presenter.injectView(new WeakReference<>(view));

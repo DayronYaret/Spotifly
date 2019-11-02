@@ -1,19 +1,19 @@
-package es.ulpgc.dayron.spotifly.friendSong;
+package es.ulpgc.dayron.spotifly.userSong;
 
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
 
-public class FriendSongPresenter implements FriendSongContract.Presenter {
+public class UserSongPresenter implements UserSongContract.Presenter {
 
-  public static String TAG = FriendSongPresenter.class.getSimpleName();
+  public static String TAG = UserSongPresenter.class.getSimpleName();
 
-  private WeakReference<FriendSongContract.View> view;
-  private FriendSongViewModel viewModel;
-  private FriendSongContract.Model model;
-  private FriendSongContract.Router router;
+  private WeakReference<UserSongContract.View> view;
+  private UserSongViewModel viewModel;
+  private UserSongContract.Model model;
+  private UserSongContract.Router router;
 
-  public FriendSongPresenter(FriendSongState state) {
+  public UserSongPresenter(UserSongState state) {
     viewModel = state;
   }
 
@@ -22,7 +22,7 @@ public class FriendSongPresenter implements FriendSongContract.Presenter {
     // Log.e(TAG, "fetchData()");
 
     // use passed state if is necessary
-    FriendSongState state = router.getDataFromPreviousScreen();
+    UserSongState state = router.getDataFromPreviousScreen();
     if (state != null) {
 
       // update view and model state
@@ -46,17 +46,17 @@ public class FriendSongPresenter implements FriendSongContract.Presenter {
   }
 
   @Override
-  public void injectView(WeakReference<FriendSongContract.View> view) {
+  public void injectView(WeakReference<UserSongContract.View> view) {
     this.view = view;
   }
 
   @Override
-  public void injectModel(FriendSongContract.Model model) {
+  public void injectModel(UserSongContract.Model model) {
     this.model = model;
   }
 
   @Override
-  public void injectRouter(FriendSongContract.Router router) {
+  public void injectRouter(UserSongContract.Router router) {
     this.router = router;
   }
 }
