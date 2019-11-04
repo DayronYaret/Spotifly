@@ -2,12 +2,18 @@ package es.ulpgc.dayron.spotifly.player;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.dayron.spotifly.app.RepositoryContract;
+
 public interface PlayerContract {
 
   interface View {
     void injectPresenter(Presenter presenter);
 
     void displayData(PlayerViewModel viewModel);
+
+    void displaySuccess();
+
+    void displayFailure();
   }
 
   interface Presenter {
@@ -22,6 +28,7 @@ public interface PlayerContract {
 
   interface Model {
     String fetchData();
+    void getInfoSong(String titulo, RepositoryContract.GetInfoSong callback);
   }
 
   interface Router {
@@ -29,6 +36,6 @@ public interface PlayerContract {
 
     void passDataToNextScreen(PlayerState state);
 
-    PlayerState getDataFromPreviousScreen();
+    String getDataFromPreviousScreen();
   }
 }

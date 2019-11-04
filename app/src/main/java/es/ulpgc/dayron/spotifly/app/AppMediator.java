@@ -95,8 +95,8 @@ public class AppMediator extends Application {
     }
 
     public void setSongsTitle(String title) {
+        this.songTitle=title;
     }
-
     public String getSongTitle() {
         return songTitle;
     }

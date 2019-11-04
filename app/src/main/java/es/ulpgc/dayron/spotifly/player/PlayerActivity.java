@@ -14,11 +14,14 @@ public class PlayerActivity
   public static String TAG = PlayerActivity.class.getSimpleName();
 
   private PlayerContract.Presenter presenter;
+  private TextView title, artist;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_player);
+    title = findViewById(R.id.textViewSongName);
+    artist = findViewById(R.id.textViewArtist);
 
     // do the setup
     PlayerScreen.configure(this);
@@ -33,10 +36,33 @@ public class PlayerActivity
   }
 
   @Override
-  public void displayData(PlayerViewModel viewModel) {
+  public void displayData(final PlayerViewModel viewModel) {
     //Log.e(TAG, "displayData()");
+    runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        Log.d("player", viewModel.artist);
+        title.setText(viewModel.title);
+        artist.setText(viewModel.artist);
+      }
+    });
 
     // deal with the data
+  }
+
+  @Override
+  public void displaySuccess() {
+
+  }
+
+  @Override
+  public void displayFailure() {
+
+  }
+
+  @Override
+  public void onBackPressed() {
+    finish();
   }
 
   @Override

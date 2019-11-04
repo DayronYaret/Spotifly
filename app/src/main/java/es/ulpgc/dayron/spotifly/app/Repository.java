@@ -37,6 +37,7 @@ public class Repository implements RepositoryContract {
   private String url;
   private DatabaseReference songsDataRefActivitySongs;
   private DatabaseReference usersDataRefActivityUsers;
+  private DatabaseReference songsDataRefActivityPlayer;
   private ArrayList<String> songList;
   private ArrayList<String> usersList;
 
@@ -245,6 +246,38 @@ public class Repository implements RepositoryContract {
         }
         Log.d("Repo2", usersList.toString());
         callback.onFillUsersArray(false, usersList);
+      }
+
+      @Override
+      public void onCancelled(@NonNull DatabaseError databaseError) {
+
+      }
+    });
+  }
+
+  @Override
+  public void getInfoSong(final String titulo, final GetInfoSong callback) {
+
+    /**
+    if(songsDataRefActivityPlayer!=null){
+      return;
+    }
+    **/
+
+    songsDataRefActivityPlayer = FirebaseDatabase.getInstance().getReference().child("songs");
+    songsDataRefActivityPlayer.addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        if (dataSnapshot.hasChild(titulo)) {
+          String artist = dataSnapshot.child(titulo).child("artist").getValue().toString();
+          String url = dataSnapshot.child(titulo).child("url").getValue().toString();
+          Log.d("Repo2", artist);
+          Log.d("Repo2", url);
+          callback.onGetInfoSong(false, artist, url);
+        } else {
+
+          callback.onGetInfoSong(true, null, null);
+        }
       }
 
       @Override

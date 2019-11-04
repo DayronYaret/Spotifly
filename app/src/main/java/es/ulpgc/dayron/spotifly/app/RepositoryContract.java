@@ -47,7 +47,10 @@ ArrayList<String> fillSongsArray(RepositoryContract.FillSongsArray callback);
   }
   void fillUsersArray(RepositoryContract.FillUsersArray callback);
 
-
+  interface GetInfoSong{
+    void onGetInfoSong(boolean error, String artist, String url);
+  }
+  void getInfoSong(String titulo, RepositoryContract.GetInfoSong callback);
 }
 
 

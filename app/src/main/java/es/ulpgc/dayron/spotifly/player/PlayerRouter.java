@@ -29,8 +29,8 @@ public class PlayerRouter implements PlayerContract.Router {
   }
 
   @Override
-  public PlayerState getDataFromPreviousScreen() {
-    PlayerState state = mediator.getPlayerState();
-    return state;
+  public String getDataFromPreviousScreen() {
+    String titulo = mediator.getSongTitle();
+    return titulo;
   }
 }

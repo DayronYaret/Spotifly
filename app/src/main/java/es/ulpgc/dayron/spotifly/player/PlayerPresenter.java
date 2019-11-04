@@ -4,6 +4,8 @@ import android.util.Log;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.dayron.spotifly.app.RepositoryContract;
+
 public class PlayerPresenter implements PlayerContract.Presenter {
 
   public static String TAG = PlayerPresenter.class.getSimpleName();
@@ -22,14 +24,13 @@ public class PlayerPresenter implements PlayerContract.Presenter {
     // Log.e(TAG, "fetchData()");
 
     // use passed state if is necessary
-    PlayerState state = router.getDataFromPreviousScreen();
-    if (state != null) {
+    String titulo = router.getDataFromPreviousScreen();
+    if (titulo != null) {
 
       // update view and model state
-      viewModel.data = state.data;
-
+      viewModel.title = titulo;
+      getInfoSong(viewModel.title);
       // update the view
-      view.get().displayData(viewModel);
 
       return;
     }
@@ -58,5 +59,27 @@ public class PlayerPresenter implements PlayerContract.Presenter {
   @Override
   public void injectRouter(PlayerContract.Router router) {
     this.router = router;
+  }
+
+  private void getInfoSong(String titulo){
+    model.getInfoSong(titulo, new RepositoryContract.GetInfoSong() {
+      @Override
+      public void onGetInfoSong(boolean error, String artist, String url) {
+        if(error == false){
+
+          viewModel.artist=artist;
+          viewModel.url=url;
+          view.get().displayData(viewModel);
+          view.get().displaySuccess();
+          Log.d("prespl", viewModel.artist);
+
+        }else{
+          viewModel.artist=artist;
+          viewModel.url=url;
+          view.get().displayFailure();
+          view.get().displayData(viewModel);
+        }
+      }
+    });
   }
 }
