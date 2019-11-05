@@ -69,9 +69,13 @@ public class PlayerPresenter implements PlayerContract.Presenter {
 
           viewModel.artist=artist;
           viewModel.url=url;
-          view.get().displayData(viewModel);
-          view.get().displaySuccess();
-          Log.d("prespl", viewModel.artist);
+          if(view.get()!=null) {
+            view.get().displayData(viewModel);
+            view.get().displaySuccess();
+            Log.d("prespl", viewModel.artist);
+          }else{
+            return;
+          }
 
         }else{
           viewModel.artist=artist;
