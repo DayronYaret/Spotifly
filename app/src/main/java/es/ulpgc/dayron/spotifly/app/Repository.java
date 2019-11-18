@@ -153,10 +153,13 @@ public class Repository implements RepositoryContract {
 
   @Override
   public void uploadSong(final String title, final String artist, Uri path, final UploadSong callback) {
-    Uri file = Uri.fromFile(new File(path.getPath()));
+    String newPath = path.getPath().replaceFirst("%3A", ":");
+    //Log.d("RepoC", newPath);
+    Uri file = Uri.fromFile(new File(newPath));
     final StorageReference songRef = storageReference.child("songs/" + file.getLastPathSegment());
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    UploadTask uploadTask = songRef.putFile((file));
+    UploadTask uploadTask = songRef.putFile(file);
+    Log.d("Repoo", file.getPath());
     uploadTask.addOnFailureListener(new OnFailureListener() {
       @Override
       public void onFailure(@NonNull Exception e) {
@@ -259,12 +262,6 @@ public class Repository implements RepositoryContract {
   @Override
   public void getInfoSong(final String titulo, final GetInfoSong callback) {
 
-    /**
-    if(songsDataRefActivityPlayer!=null){
-      return;
-    }
-     **/
-
     Log.d("Repo23", "metodo llamado");
     songsDataRefActivityPlayer = FirebaseDatabase.getInstance().getReference().child("songs");
     songsDataRefActivityPlayer.addValueEventListener(new ValueEventListener() {
@@ -310,36 +307,6 @@ public class Repository implements RepositoryContract {
             }
           });
 
-          /**
-          usersDataRefActivityPlayer.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-              //Log.d("Repo2", dataSnapshot);
-              for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                //Log.d("Repo2", dataSnapshot1.getValue().toString());
-                if (dataSnapshot1.getValue().toString().contains(uId)){
-                  Log.d("Repo3", dataSnapshot1.child("username").getValue().toString());
-                  String usuario = dataSnapshot1.child("username").getValue().toString().toLowerCase();
-                  usersDataRefActivityPlayer.child(usuario).child("ultimaCancion").setValue(titulo).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                      Log.d("Repo3", "correcto");
-
-                    }
-                  });
-                }
-                else{
-                  return;
-                }
-              }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-          });
-           **/
         } else {
 
           callback.onGetInfoSong(true, null, null);

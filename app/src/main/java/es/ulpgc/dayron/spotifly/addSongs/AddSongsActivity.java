@@ -35,7 +35,8 @@ public class AddSongsActivity
   private Button searchFile, cancel, submit;
   private Intent myFileIntent;
   private String songTitle, songArtist;
-  private Uri path;
+  private Uri uri;
+  private String path;
   private final int READ_EXTERNAL_STORAGE = 1;
   private ProgressBar progressBar;
 
@@ -71,7 +72,7 @@ public class AddSongsActivity
         startProgressBar();
         songTitle = title.getText().toString();
         songArtist = artist.getText().toString();
-        presenter.uploadSong(songTitle, songArtist, path);
+        presenter.uploadSong(songTitle, songArtist, uri);
       }
     });
     searchFile.setOnClickListener(new View.OnClickListener() {
@@ -122,8 +123,8 @@ public class AddSongsActivity
       case 10:
 
         if (resultCode == RESULT_OK) {
-          Uri selectedsong = data.getData();
-          path = selectedsong; //.getLastPathSegment() ultimo segmento del path, el nombre del archivo
+          uri = data.getData();
+          path = data.getData().getPath(); //.getLastPathSegment() ultimo segmento del path, el nombre del archivo
           //String path = getApplicationContext().getFilesDir().getPath();
           fileName.setText(path.toString());
         }
