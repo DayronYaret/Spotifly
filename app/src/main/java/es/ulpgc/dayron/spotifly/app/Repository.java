@@ -281,9 +281,9 @@ public class Repository implements RepositoryContract {
           usersDataRefActivityPlayer.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-              //Log.d("Repo2", dataSnapshot);
+              Log.d("Repo21", dataSnapshot.toString());
               for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                //Log.d("Repo2", dataSnapshot1.getValue().toString());
+                Log.d("Repo22", dataSnapshot1.getValue().toString());
                 if (dataSnapshot1.getValue().toString().contains(uId)){
                   Log.d("Repo3", dataSnapshot1.child("username").getValue().toString());
                   String usuario = dataSnapshot1.child("username").getValue().toString().toLowerCase();
@@ -294,9 +294,6 @@ public class Repository implements RepositoryContract {
 
                     }
                   });
-                }
-                else{
-                  return;
                 }
               }
             }
