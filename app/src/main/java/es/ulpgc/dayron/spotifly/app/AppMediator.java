@@ -120,4 +120,8 @@ public class AppMediator extends Application {
   public void setUser(String user) {
         this.user=user;
   }
+
+  public String getUser() {
+        return user;
+  }
 }

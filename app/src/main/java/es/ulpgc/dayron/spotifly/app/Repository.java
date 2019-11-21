@@ -39,6 +39,8 @@ public class Repository implements RepositoryContract {
   private DatabaseReference usersDataRefActivityUsers;
   private DatabaseReference songsDataRefActivityPlayer;
   private DatabaseReference usersDataRefActivityPlayer;
+  private DatabaseReference usersDataRefActivityUserSong;
+  private DatabaseReference songsDataRefActivityUserSong;
   private ArrayList<String> songList;
   private ArrayList<String> usersList;
 
@@ -307,6 +309,29 @@ public class Repository implements RepositoryContract {
         } else {
 
           callback.onGetInfoSong(true, null, null);
+        }
+      }
+
+      @Override
+      public void onCancelled(@NonNull DatabaseError databaseError) {
+
+      }
+    });
+  }
+
+  @Override
+  public void getUserSong(final String usuario, final GetUserSong callback) {
+    usersDataRefActivityUserSong = FirebaseDatabase.getInstance().getReference().child("usuarios");
+    usersDataRefActivityUserSong.addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        Log.d("RepoUS", dataSnapshot.toString());
+        if (dataSnapshot.hasChild(usuario.toLowerCase()) && (dataSnapshot.child(usuario.toLowerCase()).hasChild("ultimaCancion"))) {
+          String cancion = dataSnapshot.child(usuario.toLowerCase()).child("ultimaCancion").getValue().toString();
+          Log.d("RepoUS", cancion);
+          callback.onGetUserSong(false, cancion);
+        } else {
+          callback.onGetUserSong(true, null);
         }
       }
 

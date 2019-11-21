@@ -21,20 +21,20 @@
             android:layout_marginTop="100sp">>
 
             <TextView
-                android:id="@+id/textViewFriendName"
+                android:id="@+id/textViewUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/negro"
                 android:textSize="40sp"
-                tools:text="@string/friendName" />
+                android:text="@string/friendName" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/buttonSong"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/blanco"
                 android:textColor="@color/negro"
-                tools:text="@string/songTitle"
+                android:text="@string/songTitle"
                 android:layout_marginTop="50sp"/>
 
         </LinearLayout>
@@ -47,17 +47,7 @@
             android:layout_marginTop="20sp"
             app:layout_goneMarginTop="50sp"
             android:layout_marginStart="10sp"
-            android:layout_marginEnd="10sp">
-
-            <CheckBox
-                android:id="@+id/checkBoxLike"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:buttonTint="@color/negro"
-                android:textColor="@color/negro"
-                android:text="@string/like" />
-        </LinearLayout>
+            android:layout_marginEnd="10sp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

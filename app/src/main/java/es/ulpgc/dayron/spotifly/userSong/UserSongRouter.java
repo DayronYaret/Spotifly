@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.Context;
 
 import es.ulpgc.dayron.spotifly.app.AppMediator;
+import es.ulpgc.dayron.spotifly.player.PlayerActivity;
 
 public class UserSongRouter implements UserSongContract.Router {
 
@@ -29,8 +30,21 @@ public class UserSongRouter implements UserSongContract.Router {
   }
 
   @Override
-  public UserSongState getDataFromPreviousScreen() {
-    UserSongState state = mediator.getUserSongState();
-    return state;
+  public String getDataFromPreviousScreen() {
+    String usuario = mediator.getUser();
+    return usuario;
+  }
+
+  @Override
+  public void passDataToPlayer(String cancion) {
+    mediator.setSongsTitle(cancion);
+  }
+
+  @Override
+  public void goSongs() {
+    Context context = mediator.getApplicationContext();
+    Intent intent = new Intent(context, PlayerActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    context.startActivity(intent);
   }
 }

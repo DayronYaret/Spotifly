@@ -4,6 +4,8 @@ import android.util.Log;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.dayron.spotifly.app.RepositoryContract;
+
 public class UserSongPresenter implements UserSongContract.Presenter {
 
   public static String TAG = UserSongPresenter.class.getSimpleName();
@@ -12,6 +14,7 @@ public class UserSongPresenter implements UserSongContract.Presenter {
   private UserSongViewModel viewModel;
   private UserSongContract.Model model;
   private UserSongContract.Router router;
+  private String usuario;
 
   public UserSongPresenter(UserSongState state) {
     viewModel = state;
@@ -22,27 +25,25 @@ public class UserSongPresenter implements UserSongContract.Presenter {
     // Log.e(TAG, "fetchData()");
 
     // use passed state if is necessary
-    UserSongState state = router.getDataFromPreviousScreen();
-    if (state != null) {
+    usuario = router.getDataFromPreviousScreen();
+    if (usuario != null) {
 
       // update view and model state
-      viewModel.data = state.data;
-
-      // update the view
-      view.get().displayData(viewModel);
+      Log.d("PresUS", usuario);
+      viewModel.usuario = usuario;
+      getUserSong();
 
       return;
     }
 
-    // call the model
-    String data = model.fetchData();
+    //view.get().displayData(viewModel);
 
-    // set view state
-    viewModel.data = data;
+  }
 
-    // update the view
-    view.get().displayData(viewModel);
-
+  @Override
+  public void goPlayer() {
+    router.passDataToPlayer(viewModel.cancion);
+    router.goSongs();
   }
 
   @Override
@@ -58,5 +59,21 @@ public class UserSongPresenter implements UserSongContract.Presenter {
   @Override
   public void injectRouter(UserSongContract.Router router) {
     this.router = router;
+  }
+
+  private void getUserSong(){
+    model.getUserSong(usuario, new RepositoryContract.GetUserSong() {
+      @Override
+      public void onGetUserSong(boolean error, String cancion) {
+        if(error==false){
+          viewModel.cancion=cancion;
+          if(view.get()!=null) {
+            view.get().displayData(viewModel);
+          }
+        }else{
+          view.get().displayFailure();
+        }
+      }
+    });
   }
 }
