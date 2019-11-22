@@ -99,10 +99,12 @@ public class UsersPresenter implements UsersContract.Presenter {
       @Override
       public void onFillUsersArray(boolean error, ArrayList<String> usuarios) {
         if (error == false) {
-          view.get().displaySuccess();
-          viewModel.users = usuarios;
-          Log.d("pres2", viewModel.users.toString());
-          view.get().displayUsers(viewModel);
+          if(view.get()!=null) {
+            view.get().displaySuccess();
+            viewModel.users = usuarios;
+            Log.d("pres2", viewModel.users.toString());
+            view.get().displayUsers(viewModel);
+          }
         } else {
           view.get().displayFailure();
           Log.d("pres", "fallo al coger el array");

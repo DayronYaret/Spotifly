@@ -30,6 +30,7 @@ public class PlayerPresenter implements PlayerContract.Presenter {
       // update view and model state
       viewModel.title = titulo;
       getInfoSong(viewModel.title);
+
       // update the view
 
       return;
@@ -69,13 +70,10 @@ public class PlayerPresenter implements PlayerContract.Presenter {
 
           viewModel.artist=artist;
           viewModel.url=url;
-          if(view.get()!=null) {
             view.get().displayData(viewModel);
-            view.get().displaySuccess();
+          view.get().reproducirCancion(viewModel.url);
             Log.d("prespl", viewModel.artist);
-          }else{
-            return;
-          }
+
 
         }else{
           viewModel.artist=artist;

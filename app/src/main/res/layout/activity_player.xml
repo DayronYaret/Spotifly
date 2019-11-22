@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:textColor="@color/negro"
-                tools:text="@string/end" />
+                android:text="@string/end" />
         </LinearLayout>
 
         <LinearLayout
@@ -87,35 +87,32 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/progress"
             android:layout_marginTop="20sp">
 
-            <ImageButton
-                android:id="@+id/imageButtonBackwards"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginStart="30sp"
-                app:srcCompat="@drawable/backward"
-                android:background="@color/blanco"/>
-
-            <ToggleButton
-                android:id="@+id/toggleButton"
-                android:layout_width="250dp"
+            <Button
+                android:id="@+id/buttonPlay"
+                android:layout_width="150sp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10sp"
+                android:text="@string/play"
                 android:background="@color/morado416"
-                android:textOff="ON"
-                android:textOn="OFF"
-                tools:text="@string/playButton" />
+                android:textColor="@color/blanco"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20sp"/>
 
-            <ImageButton
-                android:id="@+id/imageButtonForward"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                app:srcCompat="@drawable/forward"
-                android:layout_marginStart="10sp"
-                android:background="@color/blanco"/>
+            <Button
+                android:id="@+id/buttonPause"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="@string/pause"
+                android:background="@color/morado416"
+                android:textColor="@color/blanco"
+                android:layout_gravity="center"
+                android:layout_marginStart="20sp"/>
+
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,4 +37,6 @@
     <string name="logout">Salir</string>
     <string name="submitButton">Enviar</string>
     <string name="users">Usuarios</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
 </resources>

@@ -11,9 +11,10 @@ public interface PlayerContract {
 
     void displayData(PlayerViewModel viewModel);
 
-    void displaySuccess();
-
     void displayFailure();
+
+    void reproducirCancion(String url);
+
   }
 
   interface Presenter {
