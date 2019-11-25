@@ -2,9 +2,12 @@ package es.ulpgc.dayron.spotifly.player;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -28,6 +31,8 @@ public class PlayerActivity
   private MediaPlayer mp;
   private String url;
   private Button play, pause;
+  private SeekBar seekBarProgress;
+  private final Handler handler = new Handler();
 
 
   @Override
@@ -40,6 +45,23 @@ public class PlayerActivity
     end=findViewById(R.id.textViewEnd);
     play=findViewById(R.id.buttonPlay);
     pause=findViewById(R.id.buttonPause);
+    seekBarProgress = (SeekBar)findViewById(R.id.seekBar);
+    //seekBarProgress.setMax(99); // It means 100% .0-99
+    seekBarProgress.setOnTouchListener(new View.OnTouchListener() {
+      @Override
+      public boolean onTouch(View view, MotionEvent motionEvent) {
+        if(view.getId() == R.id.seekBar){
+          /** Seekbar onTouch event handler. Method which seeks MediaPlayer to seekBar primary progress position*/
+          if(mp.isPlaying()){
+            SeekBar sb = (SeekBar)view;
+            int playPositionInMilliseconds = (mp.getDuration() / 100) * sb.getProgress();
+            mp.seekTo(playPositionInMilliseconds);
+          }
+        }
+        return false;
+      }
+    });
+
 
     play.setEnabled(false);
     mp = new MediaPlayer();
@@ -60,7 +82,7 @@ public class PlayerActivity
       }
     });
 
-
+    primarySeekBarProgressUpdater();
     // do the setup
     PlayerScreen.configure(this);
   }
@@ -71,6 +93,18 @@ public class PlayerActivity
 
     // load the data
     presenter.fetchData();
+  }
+
+  private void primarySeekBarProgressUpdater() {
+    seekBarProgress.setProgress((int)(((float)mp.getCurrentPosition()/mp.getDuration())*100)); // This math construction give a percentage of "was playing"/"song length"
+    if (mp.isPlaying()) {
+      Runnable notification = new Runnable() {
+        public void run() {
+          primarySeekBarProgressUpdater();
+        }
+      };
+      handler.postDelayed(notification,1000);
+    }
   }
 
   @Override
@@ -114,6 +148,27 @@ public class PlayerActivity
                 end.setText(duracion);
               } catch (IOException e) {
               }
+              runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                  if(mp!=null) {
+                    int progresoMs = mp.getCurrentPosition();
+                    String FORMAT = "%2d,%02d";
+                    String duracion = String.format(FORMAT,
+                        //Minutes
+                        TimeUnit.MILLISECONDS.toMinutes(progresoMs) -
+                            TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(progresoMs)),
+                        //Seconds
+                        TimeUnit.MILLISECONDS.toSeconds(progresoMs) -
+                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(progresoMs)));
+                    progress.setText(duracion);
+                    seekBarProgress.setMax(mp.getDuration() / 1000);
+                    int mCurrentPosition = mp.getCurrentPosition() / 1000;
+                    seekBarProgress.setProgress(mCurrentPosition);
+                    handler.postDelayed(this, 1000);
+                  }
+                }
+              });
 
   }
 
