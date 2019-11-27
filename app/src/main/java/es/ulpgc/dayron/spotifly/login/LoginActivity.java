@@ -7,6 +7,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -41,7 +42,7 @@ public class LoginActivity
     go = findViewById(R.id.buttonLogin);
     email = findViewById(R.id.user);
     password = findViewById(R.id.password);
-    mAuth= FirebaseAuth.getInstance();
+    mAuth = FirebaseAuth.getInstance();
 
     //listeners
     go.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +52,11 @@ public class LoginActivity
         if (Checker.validateEmail(email) && Checker.validatePassword(password)) {
           String userEmail = email.getText().toString();
           String pass = password.getText().toString();
-          presenter.signIn(userEmail, pass);
+          if (userEmail.isEmpty() || pass.isEmpty()) {
+            Toast.makeText(LoginActivity.this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show();
+          } else {
+            presenter.signIn(userEmail, pass);
+          }
         }
       }
     });
@@ -72,7 +77,7 @@ public class LoginActivity
   }
 
   @Override
-  protected void onResume(){
+  protected void onResume() {
     super.onResume();
 
 

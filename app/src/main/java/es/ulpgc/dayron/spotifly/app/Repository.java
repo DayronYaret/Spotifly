@@ -41,7 +41,9 @@ public class Repository implements RepositoryContract {
   private DatabaseReference usersDataRefActivityPlayer;
   private DatabaseReference usersDataRefActivityUserSong;
   private DatabaseReference songsDataRefActivityUserSong;
+  //Array de canciones que están en la base de datos
   private ArrayList<String> songList;
+  //Array de usuarios que estan en la base de datos
   private ArrayList<String> usersList;
 
   public static RepositoryContract getInstance(Context context) {

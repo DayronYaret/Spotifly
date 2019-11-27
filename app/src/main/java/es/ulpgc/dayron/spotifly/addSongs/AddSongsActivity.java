@@ -69,10 +69,14 @@ public class AddSongsActivity
     submit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        startProgressBar();
         songTitle = title.getText().toString();
         songArtist = artist.getText().toString();
-        presenter.uploadSong(songTitle, songArtist, uri);
+        if (songTitle.isEmpty() || songArtist.isEmpty() || uri == null) {
+          Toast.makeText(AddSongsActivity.this, "Por favor, rellene todos los campos y elija un archivo", Toast.LENGTH_SHORT).show();
+        } else {
+          startProgressBar();
+          presenter.uploadSong(songTitle, songArtist, uri);
+        }
       }
     });
     searchFile.setOnClickListener(new View.OnClickListener() {

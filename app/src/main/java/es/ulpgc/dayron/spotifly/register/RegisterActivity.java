@@ -49,7 +49,10 @@ public class RegisterActivity
         String userEmail = email.getText().toString();
         String userPass = pass.getText().toString();
         String userPass2 = rpass.getText().toString();
-        if(userPass.equals(userPass2)){
+        if(user.isEmpty() || userEmail.isEmpty() || userPass.isEmpty() || userPass2.isEmpty()){
+          Toast.makeText(RegisterActivity.this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show();
+        }
+        else if(userPass.equals(userPass2)){
           presenter.register(user, userEmail, userPass);
         }else{
           Toast.makeText(RegisterActivity.this, "Por favor, introduzca bien la misma contraseña", Toast.LENGTH_SHORT).show();
