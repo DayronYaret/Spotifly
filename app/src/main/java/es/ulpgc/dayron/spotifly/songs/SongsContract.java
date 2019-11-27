@@ -52,7 +52,7 @@ public interface SongsContract {
     String fetchData();
     void isLogin(RepositoryContract.IsUserLogin callback);
     void signOut(RepositoryContract.SignOut callback);
-    ArrayList<String> fillSongsArray(RepositoryContract.FillSongsArray callback);
+    void fillSongsArray(RepositoryContract.FillSongsArray callback);
   }
 
   interface Router {

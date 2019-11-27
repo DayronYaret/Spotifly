@@ -45,12 +45,13 @@ public class PlayerActivity
     end=findViewById(R.id.textViewEnd);
     play=findViewById(R.id.buttonPlay);
     pause=findViewById(R.id.buttonPause);
-    seekBarProgress = (SeekBar)findViewById(R.id.seekBar);
-    //seekBarProgress.setMax(99); // It means 100% .0-99
+    seekBarProgress = findViewById(R.id.seekBar);
+    //Este on touch listener coge el valor donde se deja el seekbar y se lo pasa al mediaplayer para que reproduzca desde ahi
     seekBarProgress.setOnTouchListener(new View.OnTouchListener() {
       @Override
       public boolean onTouch(View view, MotionEvent motionEvent) {
         if(view.getId() == R.id.seekBar){
+
           /** Seekbar onTouch event handler. Method which seeks MediaPlayer to seekBar primary progress position*/
           if(mp.isPlaying()){
             SeekBar sb = (SeekBar)view;
@@ -95,6 +96,7 @@ public class PlayerActivity
     presenter.fetchData();
   }
 
+  //Este metodo actualiza el valor del seekbar constantemente segun el progreso de la cancion
   private void primarySeekBarProgressUpdater() {
     seekBarProgress.setProgress((int)(((float)mp.getCurrentPosition()/mp.getDuration())*100)); // This math construction give a percentage of "was playing"/"song length"
     if (mp.isPlaying()) {
@@ -136,9 +138,10 @@ public class PlayerActivity
                 mp.setDataSource(url);
                 mp.prepare();
                 mp.start();
+                //hasta el setText, pone la duracion de la cancion en uno de los textView
                 int duracionMs = mp.getDuration();
                 String FORMAT = "%2d,%02d";
-                String  duracion =  String.format(FORMAT,
+                String  duracion =  String.format(FORMAT, //Esto es necesario para cambiar los milisegundos que te da getDuration a minutos y segundos
                     //Minutes
                     TimeUnit.MILLISECONDS.toMinutes(duracionMs) -
                         TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(duracionMs)),
@@ -152,6 +155,7 @@ public class PlayerActivity
                 @Override
                 public void run() {
                   if(mp!=null) {
+                    //Este bloque pone en un textView el tiempo transcurrido de la cancion
                     int progresoMs = mp.getCurrentPosition();
                     String FORMAT = "%2d,%02d";
                     String duracion = String.format(FORMAT,
@@ -165,7 +169,7 @@ public class PlayerActivity
                     seekBarProgress.setMax(mp.getDuration() / 1000);
                     int mCurrentPosition = mp.getCurrentPosition() / 1000;
                     seekBarProgress.setProgress(mCurrentPosition);
-                    handler.postDelayed(this, 1000);
+                    handler.postDelayed(this, 1000); // actualiza el valor cada segundo
                   }
                 }
               });

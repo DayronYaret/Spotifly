@@ -34,7 +34,7 @@ public class SongsModel implements SongsContract.Model {
   }
 
   @Override
-  public ArrayList<String> fillSongsArray(RepositoryContract.FillSongsArray callback) {
-    return repository.fillSongsArray(callback);
+  public void fillSongsArray(RepositoryContract.FillSongsArray callback) {
+     repository.fillSongsArray(callback);
   }
 }

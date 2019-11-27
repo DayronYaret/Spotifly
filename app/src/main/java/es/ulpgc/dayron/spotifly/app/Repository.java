@@ -207,9 +207,9 @@ public class Repository implements RepositoryContract {
   }
 
   @Override
-  public ArrayList<String> fillSongsArray(final FillSongsArray callback) {
+  public void fillSongsArray(final FillSongsArray callback) {
     if(songsDataRefActivitySongs!=null){
-      return null;
+      return ;
     }
 
     songsDataRefActivitySongs = FirebaseDatabase.getInstance().getReference().child("songs");
@@ -231,7 +231,6 @@ public class Repository implements RepositoryContract {
 
       }
     });
-    return songList;
   }
 
   @Override
